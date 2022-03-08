@@ -1,0 +1,49 @@
+/* 
+<div class="loadingio-spinner-rolling-lwtpylw27h"><div class="ldio-5lswg297lfp">
+<div>
+*/
+@keyframes ldio-5lswg297lfp {
+  0% { transform: translate(-50%,-50%) rotate(0deg); }
+  100% { transform: translate(-50%,-50%) rotate(360deg); }
+}
+.ldio-5lswg297lfp div {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #868384;
+  border-top-color: transparent;
+  border-radius: 50%;
+}
+.ldio-5lswg297lfp div {
+  animation: ldio-5lswg297lfp 1s linear infinite;
+  top: 100px;
+  left: 100px
+}
+.loadingio-spinner-rolling-lwtpylw27h {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  overflow: hidden;
+  
+}
+.ldio-5lswg297lfp {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+}
+.ldio-5lswg297lfp div { box-sizing: content-box; }
+
+.box-loading{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}

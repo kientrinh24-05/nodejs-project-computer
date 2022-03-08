@@ -1,0 +1,192 @@
+<script>
+
+    function formatNumber(num) {
+        num = num ?? 0;
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+
+    const roomCurentMonth = <%- JSON.stringify(roomCurentMonth) %>;
+    const roomLastMonth = <%- JSON.stringify(roomLastMonth) %>;
+    const customerCurentMonth = <%- JSON.stringify(customerCurentMonth) %>;
+    const customerLastMonth = <%- JSON.stringify(customerLastMonth) %>;
+    const revenueCurentMonth = <%- JSON.stringify(revenueCurentMonth) %>;
+    const revenueLastMonth = <%- JSON.stringify(revenueLastMonth) %>;
+    const ratioOrderRoom = <%- JSON.stringify(ratioOrderRoom) %>;
+    const cardCounts = document.querySelectorAll('#card-overview .card .count');
+    const cardRatios = document.querySelectorAll('#card-overview .card .ratio');
+
+    function showCardOverView(data) {
+
+        // count order
+        const countOrder = handleDataCardOverview(roomCurentMonth.map(item => item.totalCurentOrder),
+        roomLastMonth.map(item => item.totalLastOrder));
+        cardCounts[0].innerHTML = countOrder.count;
+        cardRatios[0].innerHTML = countOrder.ratio;
+
+        // count new customer
+        const countNewCustomer = handleDataCardOverview(customerCurentMonth.map(item => item.totalCurentNewCustomer),
+            customerLastMonth.map(item => item.totalLastNewCustomer));
+        cardCounts[1].innerHTML = countNewCustomer.count;
+        cardRatios[1].innerHTML = countNewCustomer.ratio;
+
+        // count revenue
+        const countRevenue = handleDataCardOverview(revenueCurentMonth.map(item => item.totalCurentRevenue),
+            revenueLastMonth.map(item => item.totalLastRevenue));
+        cardCounts[2].innerHTML = countRevenue.count + ' đ';
+        cardRatios[2].innerHTML = countRevenue.ratio;
+
+        // count ratio order room
+        cardCounts[3].innerHTML = ratioOrderRoom.length > 0 ? ((ratioOrderRoom.map(item => item.ratio * 100).reduce((prev, next) => prev + next)) / ratioOrderRoom.length).toFixed(2) + ' %' : 0 + ' %';
+
+    }
+    function handleDataCardOverview(curent, last) {
+        console.log(curent,'curent')
+        console.log(curent,'last')
+
+        // check empty 
+        if (curent.length === 0) curent.push(0);
+        if (last.length === 0) last.push(1);
+
+
+        const totalCurent = curent.reduce((prev, next) => prev + next);
+        const totalLast = last.reduce((prev, next) => prev + next);
+        return {
+            count: formatNumber(totalCurent),
+            ratio: formatNumber(Math.floor((totalCurent / totalLast * 100) > 100 ? 100 : totalCurent / totalLast * 100 )) + " %"
+        };
+    }
+    showCardOverView();
+
+</script>
+<script>
+
+    const revenueCurentWeek = <%- JSON.stringify(revenueCurentWeek) %>;
+    const orderCurentWeek = <%- JSON.stringify(orderCurentWeek) %>;
+
+    // order revenue perweek 
+    function getWeekDate() {
+        var startOfWeek = moment().startOf('isoWeek');
+        var endOfWeek = moment().endOf('isoWeek');
+
+        var days = [];
+        var day = startOfWeek;
+
+        while (day <= endOfWeek) {
+            days.push(moment(day).format("DD/MM/YYYY"));
+            day = day.clone().add(1, 'd');
+        }
+        return days;
+    }
+
+    const dateOfWeek = getWeekDate();
+
+    function fillRevenueCurentWeek(data,labels){
+        const values = [];
+        labels.forEach(item => {
+            const index = data.findIndex(d => d.day == item);
+            if(index != -1){
+                values.push(data[index].total);
+            }
+            else{
+                values.push(0);
+            }
+        });
+
+        return values;
+    }
+    
+    const dataChartRevenuePerWeek = fillRevenueCurentWeek(revenueCurentWeek,dateOfWeek);
+
+    Highcharts.chart('container', {
+        chart: {
+            type: 'spline',
+        },
+        title: {
+            text: 'Biểu đồ thống kê doanh số trong tuần'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: dateOfWeek
+        },
+        yAxis: {
+            title: {
+                text: 'Temperature'
+            },
+            labels: {
+                formatter: function () {
+                    return this.value + ' đ';
+                }
+            }
+        },
+        tooltip: {
+            crosshairs: true,
+            shared: true
+        },
+        plotOptions: {
+            spline: {
+                marker: {
+                    radius: 4,
+                    lineColor: '#666666',
+                    lineWidth: 1
+                }
+            }
+        },
+        series: [{
+            name: 'Doanh số',
+            marker: {
+                symbol: 'square'
+            },
+            data: dataChartRevenuePerWeek
+
+        }]
+    });
+
+
+    console.log(orderCurentWeek,'orderCurentWeek');
+
+    const dataChartOrderPerWeek = fillRevenueCurentWeek(orderCurentWeek,dateOfWeek);
+
+    Highcharts.chart('order', {
+        chart: {
+            type: 'column',
+            height: 300,
+        },
+        title: {
+            text: ''
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: dateOfWeek,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Rainfall (mm)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Đơn hàng',
+            data: dataChartOrderPerWeek
+
+        }]
+    });
+</script>

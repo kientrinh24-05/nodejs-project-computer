@@ -1,0 +1,320 @@
+<div class="ps-page--default">
+  <section class="link-url">
+    <div class="container">
+        <div class="link-url-content">
+            <div class="menu-not-home">
+            </div>
+            <div class="breadcrumb">
+                <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemtype="http://schema.org/Thing" itemprop="item" href="/">
+                          <span itemprop="name">Trang chủ</span>
+                        </a> <span class="bre-chia"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemtype="http://schema.org/Thing" href="/cart" itemprop="item">
+                            <span itemprop="name">Giỏ hàng </span>
+                        </a>
+                        <meta itemprop="position" content="2">
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="box-cart">
+  <div class="container">
+      <div class="header-cart">
+          <div class="txt">Thông tin giỏ hàng</div>
+          <div class="header-cart-right">
+              <a href="/" class="buy-other">Chọn tiếp sản phẩm khác</a>
+              <a href="javascript:;" class="delete-all-cart" id="empty-cart-content">Xóa giỏ hàng</a>
+          </div>
+      </div>
+      
+      <form method="post" enctype="multipart/form-data" action="/send-cart" onsubmit="return check_field()">
+        <div class="table-responsive">
+          <table class="table ps-table ps-table--shopping-cart">
+            <thead>
+              <tr>
+                <th>Sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="cart-list-main">
+
+            </tbody>
+          </table>
+        </div>  
+        <!-- <div class="cart-content">
+              <div class="cart-content-title">
+                  <div class="cart-ct-pro">Sản phẩm</div>
+                  <div class="cart-ct-price">Đơn giá</div>
+                  <div class="cart-ct-quan">Số lượng</div>
+                  <div class="cart-ct-total">Số tiền</div>
+                  <div div="" class="cart-ct-delete">Thao tác</div>
+              </div>
+              
+              
+              
+              <div class="cart-item js-item-row" data-variant_id="" data-item_id="21615" data-item_type="product">
+                  <div class="cart-ct-pro">
+                      <a href="/laptop-hp-14s-fq1080au-4k0z7pa-amd-ryzen-3-5300u-4gb-ram-256gb-ssd-14hd-amd-radeon-win10-silver-1-yr" class="cart-img"><img src="/media/product/250-21615-hp4.jpg" alt="Laptop HP 14s-fq1080AU 4K0Z7PA (AMD Ryzen 3-5300U/ 4GB RAM/ 256GB SSD/ 14" hd="" amd="" radeon="" win10="" silver="" 1="" yr)"=""></a>
+                      <div class="cart-info">
+                          <a href="/laptop-hp-14s-fq1080au-4k0z7pa-amd-ryzen-3-5300u-4gb-ram-256gb-ssd-14hd-amd-radeon-win10-silver-1-yr" class="cart-name">Laptop HP 14s-fq1080AU 4K0Z7PA (AMD Ryzen 3-5300U/ 4GB RAM/ 256GB SSD/ 14"HD/ AMD Radeon/ Win10/ Silver/ 1 Yr)</a>
+                          <div class="cart-offer">
+                              <div class="title">Khuyến mại</div>
+                              <div class="list">
+                                  
+                                  <span style="white-space: pre-line"><p> + Túi/Balo laptop trị giá : 390.000đ <br> + Chuột có dây U660 USB OPTICAL MOUSE(Black) - KM trị giá: 150.000đ<br> + Bàn di chuột trị giá: 50.000đ<br> + Bộ vệ sinh Laptop trị giá: 40.000đ<br> + Vệ sinh bảo dưỡng Laptop miễn phí trọn đời trị giá: 1 triệu đồng<br> + Giảm 10% khi mua thêm RAM, HDD laptop<br> + Giảm 5% khi mua kèm Gear, Đế tản nhiệt Laptop<br> </p></span>
+                                  
+                              </div>
+                          </div>
+                          
+                      </div>
+                  </div>
+                  <div class="cart-ct-price">
+                      <input type="hidden" class="buy-price" value="11590000">
+                      <span class="cart-price js-buy-price" data-price="11590000">11.590.000đ</span>
+                  </div>
+                  <div class="cart-ct-quan">
+                      <div class="cart-quan">
+                          <a href="javascript:;" class="js-quantity-change quantity-change amount-down" data-value="-1" title="tru">-</a>
+                          <input value="1" class="js-quantity-change buy-quantity quantity-change text-center js-buy-quantity">
+                          <a href="javascript:;" class="js-quantity-change quantity-change amount-up" data-value="1" title="them">+</a>
+                      </div>
+                  </div>
+                  <div class="cart-ct-total">
+                      <span class="cart-item-total-price total-item-price js-total-item-price">11.590.000đ</span>
+                  </div>
+                  <div div="" class="cart-ct-delete">
+                      <div class="cart-delete delete-from-cart js-delete-cart"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+                  </div>
+              </div>
+              
+          </div> -->
+          <div class="cart-info-ct">
+              <div class="item-cart-info box-info">
+                  <div class="title">THÔNG TIN NGƯỜI MUA</div>
+                  <div class="cart-note">Để tiếp tục đặt hàng, quý khách xin vui lòng nhập thông tin bên dưới</div>
+                  <div class="list">
+                      <div class="item">
+                          <label>Họ tên*</label>
+                          <input type="text" class="input-text" name="user_info[name]" id="buyer_name" value="">
+                      </div>
+                      <div class="item">
+                          <label>SĐT*</label>
+                          <input class="input-text" type="text" name="user_info[tel]" id="buyer_tel" value="">
+                      </div>
+                      <div class="item">
+                          <label>Email*</label>
+                          <input class="input-text" type="text" name="user_info[email]" id="buyer_email" value="">
+                      </div>
+                      <div class="item">
+                          <label>Địa chỉ*</label>
+                          <input class="input-text" type="text" name="user_info[address]" id="buyer_address" value="">
+                      </div>
+                      <div class="item">
+                          <label>Tỉnh/Thành phố</label>
+                          <select name="user_info[province]" id="ship_to_province" onchange="getProvince(this.value);" class="form-control">
+                              <option>Chọn Tỉnh/Thành phố</option>
+                              
+                              <option value="1"> Hà Nội </option>
+                              
+                              <option value="2"> TP HCM </option>
+                              
+                              <option value="5"> Hải Phòng </option>
+                              
+                              <option value="4"> Đà Nẵng </option>
+                              
+                              <option value="6"> An Giang </option>
+                              
+                              <option value="7"> Bà Rịa-Vũng Tàu </option>
+                              
+                              <option value="13"> Bình Dương </option>
+                              
+                              <option value="15"> Bình Phước </option>
+                              
+                              <option value="16"> Bình Thuận </option>
+                              
+                              <option value="14"> Bình Định </option>
+                              
+                              <option value="8"> Bạc Liêu </option>
+                              
+                              <option value="10"> Bắc Giang </option>
+                              
+                              <option value="9"> Bắc Kạn </option>
+                              
+                              <option value="11"> Bắc Ninh </option>
+                              
+                              <option value="12"> Bến Tre </option>
+                              
+                              <option value="18"> Cao Bằng </option>
+                              
+                              <option value="17"> Cà Mau </option>
+                              
+                              <option value="3"> Cần Thơ </option>
+                              
+                              <option value="24"> Gia Lai </option>
+                              
+                              <option value="25"> Hà Giang </option>
+                              
+                              <option value="26"> Hà Nam </option>
+                              
+                              <option value="27"> Hà Tĩnh </option>
+                              
+                              <option value="30"> Hòa Bình </option>
+                              
+                              <option value="28"> Hải Dương </option>
+                              
+                              <option value="29"> Hậu Giang </option>
+                              
+                              <option value="31"> Hưng Yên </option>
+                              
+                              <option value="32"> Khánh Hòa </option>
+                              
+                              <option value="33"> Kiên Giang </option>
+                              
+                              <option value="34"> Kon Tum </option>
+                              
+                              <option value="35"> Lai Châu </option>
+                              
+                              <option value="38"> Lào Cai </option>
+                              
+                              <option value="36"> Lâm Đồng </option>
+                              
+                              <option value="37"> Lạng Sơn </option>
+                              
+                              <option value="39"> Long An </option>
+                              
+                              <option value="40"> Nam Định </option>
+                              
+                              <option value="41"> Nghệ An </option>
+                              
+                              <option value="42"> Ninh Bình </option>
+                              
+                              <option value="43"> Ninh Thuận </option>
+                              
+                              <option value="44"> Phú Thọ </option>
+                              
+                              <option value="45"> Phú Yên </option>
+                              
+                              <option value="46"> Quảng Bình </option>
+                              
+                              <option value="47"> Quảng Nam </option>
+                              
+                              <option value="48"> Quảng Ngãi </option>
+                              
+                              <option value="49"> Quảng Ninh </option>
+                              
+                              <option value="50"> Quảng Trị </option>
+                              
+                              <option value="51"> Sóc Trăng </option>
+                              
+                              <option value="52"> Sơn La </option>
+                              
+                              <option value="53"> Tây Ninh </option>
+                              
+                              <option value="56"> Thanh Hóa </option>
+                              
+                              <option value="54"> Thái Bình </option>
+                              
+                              <option value="55"> Thái Nguyên </option>
+                              
+                              <option value="57"> Thừa Thiên-Huế </option>
+                              
+                              <option value="58"> Tiền Giang </option>
+                              
+                              <option value="59"> Trà Vinh </option>
+                              
+                              <option value="60"> Tuyên Quang </option>
+                              
+                              <option value="61"> Vĩnh Long </option>
+                              
+                              <option value="62"> Vĩnh Phúc </option>
+                              
+                              <option value="63"> Yên Bái </option>
+                              
+                              <option value="19"> Đắk Lắk </option>
+                              
+                              <option value="22"> Đồng Nai </option>
+                              
+                              <option value="23"> Đồng Tháp </option>
+                              
+                              <option value="21"> Điện Biên </option>
+                              
+                              <option value="20"> Đăk Nông </option>
+                              
+                          </select>
+                      </div>
+                      <div class="item">
+                          <label>Quận/Huyện</label>
+                          <div id="js-district-holder">
+                              <select>
+                                  <option value="0">Chọn Quận/Huyện</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="item">
+                          <label>Ghi chú</label>
+                          <textarea name="user_info[note]" id="buyer_note" cols="30" rows="10"></textarea>
+                      </div>
+                  </div>
+              </div>
+              <div class="item-cart-info box-pay-method">
+                  <div class="title">PHƯƠNG THỨC THANH TOÁN</div>
+                  <div class="list">
+                      
+                  </div>
+              </div>
+              <div class="item-cart-info box-cart-btn">
+                  <div class="title">Tổng tiền</div>
+                  <div class="list-price">
+                      <p class="price-total1">
+                          <span class="txt">Tổng cộng</span>
+                          <span id="cart-list-total">0</span>
+                      </p>
+                      <p class="price-total2">
+                          <span class="txt">Thành tiền</span>
+                          <span id="checkout-total">0</span>
+                      </p>
+                      <span class="has-vat">(Giá đã bao gồm VAT)</span>
+                      <% if (customer) { %>
+                        <div class="ps-block__bottom">
+                          <a class="ps-btn ps-btn--black" id="cart-checkout" >
+                            Thanh toán
+                          </a>
+                        </div>
+                        <% } %>
+                        <% if (!customer) { %>
+                          <div class="text-right mt-5">
+                            <a href="/dang-nhap?url_back=gio-hang">Vui lòng <span style="color: blue;">đăng nhập</span> để đặt hàng</a>
+                          </div>
+                          <% } %>
+                      
+                  </div>
+                  <div class="cart-btn">
+                      <input type="hidden" name="send_order" value="yes">
+                      <input type="hidden" id="js-total-before-fee-discount" value="11590000">
+                      <!---mot so bien khac chi de front-end-->
+                      <input type="hidden" id="js-discount-voucher" value="0">
+                      <input type="hidden" name="coupon_code" value="" id="js_coupon_code">
+                      <input type="hidden" id="js-discount-membership" value="0">
+                      <input type="hidden" name="shipping_fee" id="js-fee-shipping" value="0">
+                      <input type="hidden" name="cod_fee" id="js-fee-cod" value="0">
+                      <a href="/export_file.php?file_type=xls&amp;content_type=shopping-cart" class="down-excel" target="_blank"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Tải file excel</a>
+                      <a href="/print/user.php?view=cart" target="_blank" class="print-cart"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> in báo giá</a>
+                      <a href="javascript:void(0)" onclick="downloadCartImage()" rel="nofollow" class="down-img-cart"><i class="fa fa-picture-o" aria-hidden="true"></i> Tải ảnh báo giá</a>
+                      <button type="submit"><i class="fa fa-check" aria-hidden="true"></i> Đặt hàng</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+      
+  </div>
+</section>
+</div>

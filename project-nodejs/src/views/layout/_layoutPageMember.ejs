@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <title>Supro Minimal</title>
+  <link
+    href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:300i,400,400i,500,500i,600,600i,700&amp;display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/page/plugins/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/page/plugins/bootstrap4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/page/plugins/owl-carousel/assets/owl.carousel.css">
+  <link rel="stylesheet" href="/page/plugins/slick/slick/slick.css">
+  <link rel="stylesheet" href="/page/plugins/lightGallery-master/dist/css/lightgallery.min.css">
+  <link rel="stylesheet" href="/page/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css">
+  <link rel="stylesheet" href="/page/plugins/jquery-ui/jquery-ui.min.css">
+  <link rel="stylesheet" href="/page/plugins/select2/dist/css/select2.min.css">
+  <link rel="stylesheet" href="/page/fonts/Linearicons/Linearicons/Font/demo-files/demo.css">
+  <link rel="stylesheet" href="/page/css/style.css">
+  <style>
+    .page-item.active .page-link {
+      z-index: 1;
+      color: #fff;
+      background-color: gray;
+      border-color: gray;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 45px;
+      height: 20px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #4d4d4d;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: -4px;
+      bottom: -1px;
+      background-color: white;
+      border: 1px solid #4d4d4d;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked+.slider {
+      background-color: #4d4d4d;
+    }
+
+    input:focus+.slider {
+      box-shadow: 0 0 1px #4d4d4d;
+    }
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+  </style>
+  <%- style %>
+</head>
+
+<body>
+
+  <section class="header-top">
+    <div class="container">
+        <div class="header-top-content">
+            <ul class="ht-ct-left">
+                <li>
+                    <a href="#popup-showroom" data-fancybox="showroom" class="item-top">
+                        <span class="icons-2021"></span>
+                        <span class="txt">Hệ thống showroom</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#popup-hotline" data-fancybox="hotline" class="item-top bg-gradient">
+                        <span class="icons-2021"></span>
+                        <span class="txt">Khách Cá Nhân</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#business" data-fancybox="business-customers" class="item-top bg-gradient">
+                        <span class="icons-2021"></span>
+                        <span class="txt"><b>Khách Doanh Nghiệp</b></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/tin-tuc" class="item-top">
+                        <span class="icons-2021"></span>
+                        <span class="txt">Tin công nghệ</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hr-ct-right">
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
+              	
+                <a href="/dang-ky">Đăng ký</a>/
+                <a href="/dang-nhap">Đăng nhập</a>
+                <% if (!customer) { %>
+                  <a class="header__user" href="/dang-nhap"><i class="icon-user"></i></a>
+                  <% } %>
+                    <% if (customer) { %>
+                      <a class="header__user" href="/ho-so">
+                        <img style="width: 30px; border-radius: 50%; border: 1px solid lightblue;"
+                          src="<%= customer.avatar %>">
+                      </a>
+                      <% } %>
+                        <% if (customer) { %>
+                          <ul style="margin-left:10px">
+                            <li><a style="font-size: 12px;" href="/dang-xuat">Đăng xuất</a></li>
+                          </ul>
+                          <% } %>
+            </div>
+            
+        </div>
+        
+    </div>
+</section>
+<section class="header-mid not-home">
+  <div class="container">
+      <div class="header-mid-content">
+          <div class="logo">
+            <a class="ps-logo" href="/"><img src="/page/img/logo.svg" alt=""></a>
+          </div>
+          <div class="menu-cat">
+              <div class="title-mn"><span class="icons-2021"></span> Danh mục sản phẩm <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+              <div class="box-menu-home">
+                  <ul>
+                      
+                      <li>
+                          <a href="/laptop" class="itop" style="background: url(/media/category/cat_icon_407_1635498774.png) no-repeat;">LAPTOP - PHỤ KIỆN</a>
+                          
+                          <div class="sub-menu">
+                              
+                              <div class="box-menu">
+                                  <a href="/laptop-gaming" class="lv2">LAPTOP GAMING</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/laptop-theo-nhu-cau" class="lv2">LAPTOP THEO NHU CẦU</a>
+                                  
+                                  
+                                  <a href="/laptop-gaming-1" class="lv3">Laptop Gaming</a>
+                                  
+                                  <a href="/laptop-do-hoa-kien-truc" class="lv3">Laptop Đồ Họa - Kiến Trúc</a>
+                                  
+                                  <a href="/laptop-van-phong" class="lv3">Laptop Văn Phòng</a>
+                                  
+                                  <a href="/laptop-mong-nhe" class="lv3">Laptop Mỏng Nhẹ</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/laptop-theo-khoang-gia" class="lv2">LAPTOP THEO KHOẢNG GIÁ</a>
+                                  
+                                  
+                                  <a href="/duoi-10-trieu" class="lv3">Dưới 10 Triệu</a>
+                                  
+                                  <a href="/10-trieu-15-trieu" class="lv3">10 Triệu - 15 Triệu</a>
+                                  
+                                  <a href="/15-trieu-20-trieu" class="lv3">15 Triệu - 20 Triệu</a>
+                                  
+                                  <a href="/20-trieu-30-trieu" class="lv3">20 Triệu - 30 Triệu</a>
+                                  
+                                  <a href="/30-trieu-50-trieu" class="lv3">30 Triệu - 50 Triệu</a>
+                                  
+                                  <a href="/50-trieu-100-trieu" class="lv3">50 Triệu - 100 Triệu</a>
+                                  
+                                  <a href="/tren-100-trieu" class="lv3">Trên 100 Triệu</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/laptop-theo-cpu" class="lv2">LAPTOP THEO CPU</a>
+                                  
+                                  
+                                  <a href="/intel-celeronpentium" class="lv3">Intel Celeron/Pentium</a>
+                                  
+                                  <a href="/intel-core-i3" class="lv3">Intel Core i3</a>
+                                  
+                                  <a href="/intel-core-i5" class="lv3">Intel Core i5</a>
+                                  
+                                  <a href="/intel-core-i7" class="lv3">Intel Core i7</a>
+                                  
+                                  <a href="/intel-core-i9" class="lv3">Intel Core i9</a>
+                                  
+                                  <a href="/amd-ryzen-3" class="lv3">AMD Ryzen 3</a>
+                                  
+                                  <a href="/amd-ryzen-5" class="lv3">AMD Ryzen 5</a>
+                                  
+                                  <a href="/amd-ryzen-7" class="lv3">AMD Ryzen 7</a>
+                                  
+                                  <a href="/amd-ryzen-9" class="lv3">AMD Ryzen 9</a>
+                                  
+                                  <a href="/apple-m1" class="lv3">Apple M1</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/laptop-theo-hang" class="lv2">LAPTOP THEO HÃNG</a>
+                                  
+                                  
+                                  <a href="/dell" class="lv3">Laptop Dell</a>
+                                  
+                                  <a href="/laptop-hp" class="lv3">Laptop HP</a>
+                                  
+                                  <a href="/lenovo" class="lv3">Laptop Lenovo</a>
+                                  
+                                  <a href="/laptop-lg" class="lv3">Laptop LG</a>
+                                  
+                                  <a href="/laptop-asus" class="lv3">Laptop Asus</a>
+                                  
+                                  <a href="/laptop-gigabyte" class="lv3">Laptop Gigabyte</a>
+                                  
+                                  <a href="/laptop-msi" class="lv3">Laptop MSI</a>
+                                  
+                                  <a href="/laptop-acer" class="lv3">Laptop Acer</a>
+                                  
+                                  <a href="/laptop-apple" class="lv3">Laptop Apple</a>
+                                  
+                                  <a href="/laptop-microsoft" class="lv3">Laptop Microsoft</a>
+                                  
+                                  <a href="/laptop-xpg" class="lv3">Laptop XPG</a>
+                                  
+                                  <a href="/laptop-colorful" class="lv3">Laptop Colorful</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/linh-kien-laptop" class="lv2">LINH KIỆN LAPTOP</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/phu-kien-laptop" class="lv2">PHỤ KIỆN LAPTOP</a>
+                                  
+                              </div>
+                              
+                          </div>
+                          
+                      </li>
+                      
+                      <li>
+                          <a href="/pc-workstation" class="itop" style="background: url(/media/category/cat_icon_408_1635498610.png) no-repeat;">PC ĐỒ HOẠ - LÀM VIỆC</a>
+                          
+                          <div class="sub-menu">
+                              
+                              <div class="box-menu">
+                                  <a href="/pc-do-hoa-3ds-max" class="lv2">Pc đồ họa 3ds Max</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/pc-do-hoa-autocad" class="lv2">Pc đồ họa AutoCAD</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/edit-render-video-4k-8k" class="lv2">Pc dựng phim - Editor</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/intel-xeon-workstation" class="lv2">Bộ Máy Sử Dụng CPU Intel Xeon</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/amd-ryzen-workstation" class="lv2">Bộ Máy Sử Dụng CPU AMD</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/workstation-nc" class="lv2">Bộ Máy Sử Dụng CPU Intel Core I</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/bo-pc-chay-ai-tri-tue-nhan-tao" class="lv2">Pc AI - Trí tuệ nhân tạo</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/server-may-ao-hoa" class="lv2">Server - Máy ảo hóa</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/bo-may-tinh-van-phong" class="lv2">Bộ Máy Tính Văn Phòng</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/apple-imac" class="lv2">Apple iMac</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/may-tinh-dong-bo" class="lv2">Máy Tính Đồng Bộ</a>
+                                  
+                              </div>
+                              
+                          </div>
+                          
+                      </li>
+                      
+                      <!-- <li>
+                          <a href="/pc-gaming" class="itop" style="background: url(/media/category/cat_icon_1829_1635498807.png) no-repeat;">PC GAMING</a>
+                          
+                          <div class="sub-menu">
+                              
+                              <div class="box-menu">
+                                  <a href="/pc-gaming-theo-nhu-cau" class="lv2">PC GAMING THEO NHU CẦU</a>
+                                  
+                                  
+                                  <a href="/pc-esport" class="lv3">PC ESPORT</a>
+                                  
+                                  <a href="/pc-game-aaa" class="lv3">PC GAME AAA</a>
+                                  
+                                  <a href="/pc-stream-game" class="lv3">PC STREAM GAME</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/pc-gaming-theo-khoang-gia" class="lv2">PC GAMING THEO KHOẢNG GIÁ</a>
+                                  
+                                  
+                                  <a href="/15-trieu-20-trieu-1" class="lv3">15 Triệu - 20 Triệu</a>
+                                  
+                                  <a href="/duoi-10-trieu-1" class="lv3">Dưới 10 Triệu</a>
+                                  
+                                  <a href="/10-trieu-20-trieu" class="lv3">10 Triệu - 15 Triệu</a>
+                                  
+                                  <a href="/20-trieu-30-trieu-1" class="lv3">20 Triệu - 30 Triệu</a>
+                                  
+                                  <a href="/30-trieu-50-trieu-1" class="lv3">30 Triệu - 50 Triệu</a>
+                                  
+                                  <a href="/50-trieu-100-trieu-1" class="lv3">50 Triệu - 100 Triệu</a>
+                                  
+                                  <a href="/tren-100-trieu-1" class="lv3">Trên 100 Triệu</a>
+                                  
+                                  
+                              </div>
+                              
+                          </div>
+                          
+                      </li>
+                      
+                      <li>
+                          <a href="/linh-kien-may-tinh" class="itop" style="background: url(/media/category/cat_icon_3431_1646643506.png) no-repeat;">LINH KIỆN MÁY TÍNH</a>
+                          
+                          <div class="sub-menu">
+                              
+                              <div class="box-menu">
+                                  <a href="/cpu-bo-vi-xu-ly" class="lv2">CPU - Bộ vi xử lý</a>
+                                  
+                                  
+                                  <a href="/cpu-amd" class="lv3">CPU AMD</a>
+                                  
+                                  <a href="/cpu-intel" class="lv3">CPU INTEL</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/mainboard-bo-mach-chu" class="lv2">Main - Bo mạch chủ</a>
+                                  
+                                  
+                                  <a href="/main-nzxt" class="lv3">Main NZXT</a>
+                                  
+                                  <a href="/main-supermicro" class="lv3">Main Supermicro</a>
+                                  
+                                  <a href="/main-msi" class="lv3">Main Msi</a>
+                                  
+                                  <a href="/main-huananzhi" class="lv3">Main Huananzhi</a>
+                                  
+                                  <a href="/main-gigabyte" class="lv3">Main Gigabyte</a>
+                                  
+                                  <a href="/main-asrock" class="lv3">Main Asrock</a>
+                                  
+                                  <a href="/main-asus" class="lv3">Main Asus</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/ram" class="lv2">Ram - Bộ nhớ trong</a>
+                                  
+                                  
+                                  <a href="/ram-colorful" class="lv3">RAM Colorful</a>
+                                  
+                                  <a href="/ram-laptop" class="lv3">RAM LAPTOP</a>
+                                  
+                                  <a href="/ram-ocpc" class="lv3">RAM OCPC</a>
+                                  
+                                  <a href="/ram-team" class="lv3">Ram Team</a>
+                                  
+                                  <a href="/ram-samsung" class="lv3">RAM Samsung</a>
+                                  
+                                  <a href="/ram-pny" class="lv3">Ram PNY</a>
+                                  
+                                  <a href="/ram-micron" class="lv3">Ram Micron</a>
+                                  
+                                  <a href="/ram-lexar" class="lv3">RAM Lexar</a>
+                                  
+                                  <a href="/ram-kingston" class="lv3">Ram Kingston</a>
+                                  
+                                  <a href="/kingmax" class="lv3">Ram Kingmax</a>
+                                  
+                                  <a href="/ram-hynix" class="lv3">Ram Hynix</a>
+                                  
+                                  <a href="/ram-hp" class="lv3">Ram HP</a>
+                                  
+                                  <a href="/ram-gskill" class="lv3">Ram Gskill</a>
+                                  
+                                  <a href="/ram-gigabyte" class="lv3">Ram Gigabyte</a>
+                                  
+                                  <a href="/ram-geil" class="lv3">Ram Geil</a>
+                                  
+                                  <a href="/ram-galax" class="lv3">Ram Galax</a>
+                                  
+                                  <a href="/ram-crucial" class="lv3">Ram Crucial</a>
+                                  
+                                  <a href="/ram-corsair" class="lv3">Ram Corsair</a>
+                                  
+                                  <a href="/ram-avexir" class="lv3">Ram Avexir</a>
+                                  
+                                  <a href="/apacer-ram" class="lv3">Ram Apacer</a>
+                                  
+                                  <a href="/adata-ram" class="lv3">Ram Adata</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/vga-card-man-hinh" class="lv2">VGA - Card Màn Hình</a>
+                                  
+                                  
+                                  <a href="/vga-manli" class="lv3">VGA Manli</a>
+                                  
+                                  <a href="/vga-zotac" class="lv3">Vga Zotac</a>
+                                  
+                                  <a href="/vga-sapphire" class="lv3">Vga Sapphire</a>
+                                  
+                                  <a href="/vga-powercolor" class="lv3">VGA PowerColor</a>
+                                  
+                                  <a href="/vga-pny" class="lv3">VGA PNY</a>
+                                  
+                                  <a href="/vga-palit" class="lv3">Vga Palit</a>
+                                  
+                                  <a href="/vga-nvidia" class="lv3">Vga Nvidia - Quadro</a>
+                                  
+                                  <a href="/vga-msi" class="lv3">Vga Msi</a>
+                                  
+                                  <a href="/vga-leadtek" class="lv3">Vga Leadtek</a>
+                                  
+                                  <a href="/vga-inno3d" class="lv3">Vga Inno3D</a>
+                                  
+                                  <a href="/vga-gigabyte" class="lv3">Vga Gigabyte</a>
+                                  
+                                  <a href="/vga-galax" class="lv3">Vga Galax</a>
+                                  
+                                  <a href="/evga" class="lv3">Vga Evga</a>
+                                  
+                                  <a href="/colorful-vga-card-man-hinh" class="lv3">Vga Colorful</a>
+                                  
+                                  <a href="/vga-asrock" class="lv3">Vga Asrock</a>
+                                  
+                                  <a href="/vga-amd" class="lv3">Vga AMD</a>
+                                  
+                                  <a href="/asus-vga-card-man-hinh" class="lv3">Vga Asus</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/psu-nguon-may-tinh" class="lv2">PSU - Nguồn máy tính</a>
+                                  
+                                  
+                                  <a href="/nguon-gamemax" class="lv3">Nguồn GAMEMAX</a>
+                                  
+                                  <a href="/nguon-nzxt" class="lv3">Nguồn NZXT</a>
+                                  
+                                  <a href="/psu-xigmatek" class="lv3">Nguồn Xigmatek</a>
+                                  
+                                  <a href="/nguon-x-tech" class="lv3">Nguồn X - Tech</a>
+                                  
+                                  <a href="/nguon-thermaltake" class="lv3">Nguồn Thermaltake</a>
+                                  
+                                  <a href="/seasonic" class="lv3">Nguồn Seasonic</a>
+                                  
+                                  <a href="/psu-sama" class="lv3">Nguồn Sama</a>
+                                  
+                                  <a href="/nguon-super-flower" class="lv3">Nguồn Super Flower</a>
+                                  
+                                  <a href="/psu-raidmax" class="lv3">Nguồn Raidmax</a>
+                                  
+                                  <a href="/psu-jetek" class="lv3">Nguồn JETEK</a>
+                                  
+                                  <a href="/nguon-infinity" class="lv3">Nguồn Infinity</a>
+                                  
+                                  <a href="/psu-huntkey" class="lv3">Nguồn Huntkey</a>
+                                  
+                                  <a href="/psu-hydro" class="lv3">Nguồn Hydro</a>
+                                  
+                                  <a href="/nguon-gigabyte" class="lv3">Nguồn Gigabyte</a>
+                                  
+                                  <a href="/psu-evga" class="lv3">Nguồn Evga</a>
+                                  
+                                  <a href="/corsair-psu-nguon-may-tinh" class="lv3">Nguồn Corsair</a>
+                                  
+                                  <a href="/psu-cooler-master" class="lv3">Nguồn Cooler master</a>
+                                  
+                                  <a href="/psu-antec" class="lv3">Nguồn Antec</a>
+                                  
+                                  <a href="/nguon-aerocool" class="lv3">Nguồn AEROCOOL</a>
+                                  
+                                  <a href="/nguon-asus" class="lv3">Nguồn ASUS</a>
+                                  
+                                  <a href="/nguon-msi" class="lv3">Nguồn MSI</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/case-vo-may-tinh" class="lv2">Case - Vỏ máy tính</a>
+                                  
+                                  
+                                  <a href="/case-montech" class="lv3">Case Montech</a>
+                                  
+                                  <a href="/infinity" class="lv3">Case Infinity</a>
+                                  
+                                  <a href="/case-raidmax" class="lv3">Case Raidmax</a>
+                                  
+                                  <a href="/case-sharkoon" class="lv3">Case Sharkoon</a>
+                                  
+                                  <a href="/case-nzxt" class="lv3">Case NZXT</a>
+                                  
+                                  <a href="/case-tecware" class="lv3">Case Tecware</a>
+                                  
+                                  <a href="/case-vitra" class="lv3">Case Vitra</a>
+                                  
+                                  <a href="/case-sama" class="lv3">Case Sama</a>
+                                  
+                                  <a href="/case-x-tech" class="lv3">Case X - Tech</a>
+                                  
+                                  <a href="/case-huntkey" class="lv3">Case Huntkey</a>
+                                  
+                                  <a href="/case-jetek" class="lv3">Case Jetek</a>
+                                  
+                                  <a href="/case-orient" class="lv3">Case Orient</a>
+                                  
+                                  <a href="/case-msi" class="lv3">Case MSI</a>
+                                  
+                                  <a href="/case-kenoo" class="lv3">Case Kenoo</a>
+                                  
+                                  <a href="/golden-field" class="lv3">Case Golden Field</a>
+                                  
+                                  <a href="/case-gigabyte" class="lv3">Case GIGABYTE</a>
+                                  
+                                  <a href="/case-jonsbo" class="lv3">Case Jonsbo</a>
+                                  
+                                  <a href="/case-e-dra" class="lv3">Case E-DRA</a>
+                                  
+                                  <a href="/case-corsair" class="lv3">Case Corsair</a>
+                                  
+                                  <a href="/case-cooler-master" class="lv3">Case Cooler Master</a>
+                                  
+                                  <a href="/case-thermaltake" class="lv3">Case Thermaltake</a>
+                                  
+                                  <a href="/case-xigmatek" class="lv3">Case Xigmatek</a>
+                                  
+                                  <a href="/case-asus" class="lv3">Case Asus</a>
+                                  
+                                  <a href="/antec" class="lv3">Case Antec</a>
+                                  
+                                  <a href="/case-aigo" class="lv3">Case Aigo</a>
+                                  
+                                  
+                              </div>
+                              
+                          </div>
+                          
+                      </li>
+                      
+                      <li>
+                          <a href="/o-cung-hdd-ssd" class="itop" style="background: url(/media/category/cat_icon_284_1635499064.png) no-repeat;">THIẾT BỊ LƯU TRỮ</a>
+                          
+                          <div class="sub-menu">
+                              
+                              <div class="box-menu">
+                                  <a href="/o-cung-ssd" class="lv2">Ổ cứng SSD</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/o-cung-hdd" class="lv2">Ổ cứng HDD</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/o-cung-di-dong" class="lv2">Ổ cứng di động</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/usb" class="lv2">USB</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/o-dia-quang" class="lv2">Ổ Đĩa Quang</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/o-cung-theo-hang" class="lv2">Ổ CỨNG THEO HÃNG</a>
+                                  
+                                  
+                                  <a href="/o-cung-silicon-power" class="lv3">Ổ cứng Silicon Power</a>
+                                  
+                                  <a href="/o-cung-kingfast" class="lv3">Ổ cứng Kingfast</a>
+                                  
+                                  <a href="/o-cung-western-digital" class="lv3">Ổ cứng Western digital</a>
+                                  
+                                  <a href="/o-cung-transcend" class="lv3">Ổ cứng Transcend</a>
+                                  
+                                  <a href="/o-cung-toshiba" class="lv3">Ổ cứng Toshiba</a>
+                                  
+                                  <a href="/o-cung-terramaster" class="lv3">Ổ cứng TerraMaster</a>
+                                  
+                                  <a href="/team-o-cung-hdd-ssd" class="lv3">Ổ cứng Team</a>
+                                  
+                                  <a href="/o-cung-seagate" class="lv3">Ổ cứng Seagate</a>
+                                  
+                                  <a href="/o-cung-sam-sung" class="lv3">Ổ cứng Samsung</a>
+                                  
+                                  <a href="/pny" class="lv3">Ổ cứng PNY</a>
+                                  
+                                  <a href="/o-cung-plextor" class="lv3">Ổ cứng Plextor</a>
+                                  
+                                  <a href="/o-cung-kingspec" class="lv3">Ổ cứng Kingspec</a>
+                                  
+                                  <a href="/o-cung-kingmax" class="lv3">Ổ cứng Kingmax</a>
+                                  
+                                  <a href="/o-cung-kingston" class="lv3">Ổ cứng Kingston</a>
+                                  
+                                  <a href="/o-cung-intel" class="lv3">Ổ cứng Intel</a>
+                                  
+                                  <a href="/hsgt" class="lv3">Ổ cứng HSGT</a>
+                                  
+                                  <a href="/gigabyte" class="lv3">Ổ cứng Gigabyte</a>
+                                  
+                                  <a href="/o-cung-galax" class="lv3">Ổ cứng Galax</a>
+                                  
+                                  <a href="/o-cung-fuhler" class="lv3">Ổ cứng Fuhler</a>
+                                  
+                                  <a href="/o-cung-faspeed" class="lv3">Ổ cứng Faspeed</a>
+                                  
+                                  <a href="/o-cung-corsair" class="lv3">Ổ Cứng Corsair</a>
+                                  
+                                  <a href="/o-cung-colorful" class="lv3">Ổ cứng Colorful</a>
+                                  
+                                  <a href="/0-cung-biostar" class="lv3">Ổ cứng Biostar</a>
+                                  
+                                  <a href="/o-cung-apacer" class="lv3">Ổ cứng Apacer</a>
+                                  
+                                  <a href="/o-cung-adata" class="lv3">Ổ cứng Adata</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/theo-dung-luong" class="lv2">THEO DUNG LƯỢNG</a>
+                                  
+                                  
+                                  <a href="/8gb" class="lv3">8GB</a>
+                                  
+                                  <a href="/64gb" class="lv3">64GB</a>
+                                  
+                                  <a href="/16gb" class="lv3">16GB</a>
+                                  
+                                  <a href="/32gb" class="lv3">32GB</a>
+                                  
+                                  <a href="/120gb" class="lv3">120GB</a>
+                                  
+                                  <a href="/128gb" class="lv3">128GB</a>
+                                  
+                                  <a href="/240gb" class="lv3">240GB</a>
+                                  
+                                  <a href="/250gb" class="lv3">250GB</a>
+                                  
+                                  <a href="/256gb" class="lv3">256GB</a>
+                                  
+                                  <a href="/480gb" class="lv3">480GB</a>
+                                  
+                                  <a href="/500gb" class="lv3">500GB</a>
+                                  
+                                  <a href="/512gb" class="lv3">512GB</a>
+                                  
+                                  <a href="/1tb" class="lv3">1TB</a>
+                                  
+                                  <a href="/2tb" class="lv3">2TB</a>
+                                  
+                                  <a href="/3tb" class="lv3">3TB</a>
+                                  
+                                  <a href="/4tb" class="lv3">4TB</a>
+                                  
+                                  <a href="/6tb" class="lv3">6TB</a>
+                                  
+                                  <a href="/8tb" class="lv3">8TB</a>
+                                  
+                                  <a href="/10tb" class="lv3">10TB</a>
+                                  
+                                  <a href="/tren-10tb" class="lv3">Trên 10TB</a>
+                                  
+                                  
+                              </div>
+                              
+                          </div>
+                          
+                      </li>
+                      
+                      <li>
+                          <a href="/monitor-man-hinh" class="itop" style="background: url(/media/category/cat_icon_281_1635499026.png) no-repeat;">MÀN HÌNH MÁY TÍNH</a>
+                          
+                          <div class="sub-menu">
+                              
+                              <div class="box-menu">
+                                  <a href="/man-hinh-theo-hang" class="lv2">MÀN HÌNH THEO HÃNG</a>
+                                  
+                                  
+                                  <a href="/man-hinh-msi" class="lv3">Màn Hình MSI</a>
+                                  
+                                  <a href="/man-hinh-unikoon" class="lv3">Màn hình Unikoon</a>
+                                  
+                                  <a href="/man-hinh-viewsonic" class="lv3">Màn hình Viewsonic</a>
+                                  
+                                  <a href="/man-hinh-infinity" class="lv3">Màn Hình Infinity</a>
+                                  
+                                  <a href="/thinkview" class="lv3">Màn hình Thinkview</a>
+                                  
+                                  <a href="/sam-sung-monitor-man-hinh" class="lv3">Màn hình Samsung</a>
+                                  
+                                  <a href="/man-hinh-lg" class="lv3">Màn hình LG</a>
+                                  
+                                  <a href="/man-hinh-kingview" class="lv3">Màn Hình Kingview</a>
+                                  
+                                  <a href="/man-hinh-hkc" class="lv3">Màn hình HKC</a>
+                                  
+                                  <a href="/man-hinh-gigabyte" class="lv3">Màn hình Gigabyte</a>
+                                  
+                                  <a href="/dell-monitor-man-hinh" class="lv3">Màn hình Dell</a>
+                                  
+                                  <a href="/man-hinh-coolermaster" class="lv3">Màn hình Coolermaster</a>
+                                  
+                                  <a href="/man-hinh-benq" class="lv3">Màn hình BenQ</a>
+                                  
+                                  <a href="/man-hinh-aoc" class="lv3">Màn hình AOC</a>
+                                  
+                                  <a href="/man-hinh-asus" class="lv3">Màn hình Asus</a>
+                                  
+                                  <a href="/man-hinh-acer" class="lv3">Màn hình Acer</a>
+                                  
+                                  <a href="/smart-monitor" class="lv3">Màn hình thông minh</a>
+                                  
+                                  <a href="/man-hinh-bjx" class="lv3">Màn hình BJX</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/man-hinh-theo-kich-thuoc" class="lv2">MÀN HÌNH THEO KÍCH THƯỚC</a>
+                                  
+                                  
+                                  <a href="/man-hinh-17-inches" class="lv3">Màn Hình 17 inches</a>
+                                  
+                                  <a href="/man-hinh-19-inches" class="lv3">Màn hình 19 inches</a>
+                                  
+                                  <a href="/man-hinh-20-inches" class="lv3">Màn hình 20 inches</a>
+                                  
+                                  <a href="/man-hinh-22-inches" class="lv3">Màn hình 22 inches</a>
+                                  
+                                  <a href="/man-hinh-23-inches" class="lv3">Màn hình 23 inches</a>
+                                  
+                                  <a href="/man-hinh-24-inches" class="lv3">Màn hình 24 inches</a>
+                                  
+                                  <a href="/man-hinh-25-inches" class="lv3">Màn hình 25 inches</a>
+                                  
+                                  <a href="/man-hinh-27-inches" class="lv3">Màn hình 27 inches</a>
+                                  
+                                  <a href="/man-hinh-29-inches" class="lv3">Màn hình 29 inches</a>
+                                  
+                                  <a href="/man-hinh-32-inches" class="lv3">Màn hình 32 inches</a>
+                                  
+                                  <a href="/man-hinh-34-inches" class="lv3">Màn hình 34 inches</a>
+                                  
+                                  <a href="/man-hinh-34-inches-1" class="lv3">Màn hình &gt; 34 inches</a>
+                                  
+                                  <a href="/man-hinh-30-inches" class="lv3">Màn hình 30 inches</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/do-phan-giai-man-hinh-1" class="lv2">ĐỘ PHÂN GIẢI MÀN HÌNH</a>
+                                  
+                                  
+                                  <a href="/1280-x-1024" class="lv3">1280 x 1024</a>
+                                  
+                                  <a href="/1366-x-768-vxga" class="lv3">1366 x 768 (VXGA)</a>
+                                  
+                                  <a href="/1600-x-900" class="lv3">1600 x 900</a>
+                                  
+                                  <a href="/1920-x-1080-fhd" class="lv3">1920 x 1080 (FHD)</a>
+                                  
+                                  <a href="/1920-x-1200-wuxga" class="lv3">1920 x 1200 (WUXGA)</a>
+                                  
+                                  <a href="/2560-x-1080-wfhd" class="lv3">2560 x 1080 (WFHD)</a>
+                                  
+                                  <a href="/2560-x-1440-qhd-2k" class="lv3">2560 x 1440 (QHD 2K)</a>
+                                  
+                                  <a href="/3440x1440-wqhd" class="lv3">3440x1440 (WQHD)</a>
+                                  
+                                  <a href="/3840x1080" class="lv3">3840x1080</a>
+                                  
+                                  <a href="/3840x1600" class="lv3">3840x1600</a>
+                                  
+                                  <a href="/3840-x-2160-uhd-4k" class="lv3">3840 x 2160 (UHD 4K)</a>
+                                  
+                                  <a href="/5120-x-2880-uhd-5k" class="lv3">5120 x 2880 (UHD+ 5K)</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/tan-so-quet" class="lv2">TẦN SỐ QUÉT</a>
+                                  
+                                  
+                                  <a href="/60-hz" class="lv3">60 Hz</a>
+                                  
+                                  <a href="/75-hz" class="lv3">75 Hz</a>
+                                  
+                                  <a href="/100-hz" class="lv3">100 Hz</a>
+                                  
+                                  <a href="/144-hz" class="lv3">144 Hz</a>
+                                  
+                                  <a href="/165-hz" class="lv3">165 Hz</a>
+                                  
+                                  <a href="/170-hz" class="lv3">170 Hz</a>
+                                  
+                                  <a href="/240-hz" class="lv3">240 Hz</a>
+                                  
+                                  <a href="/360-hz" class="lv3">360 Hz</a>
+                                  
+                                  <a href="/200-hz" class="lv3">200 Hz</a>
+                                  
+                                  
+                              </div>
+                              
+                          </div>
+                          
+                      </li>
+                      
+                      <li>
+                          <a href="/phu-kien" class="itop" style="background: url(/media/category/cat_icon_410_1635499139.png) no-repeat;">PHÍM CHUỘT, GHẾ, GEAR</a>
+                          
+                          <div class="sub-menu">
+                              
+                              <div class="box-menu">
+                                  <a href="/chuot-mouse" class="lv2">Mouse - Chuột</a>
+                                  
+                                  
+                                  <a href="/chuot-khac" class="lv3">Chuột khác</a>
+                                  
+                                  <a href="/chuot-asus" class="lv3">Chuột Asus</a>
+                                  
+                                  <a href="/chuot-e-dra" class="lv3">Chuột E-DRA</a>
+                                  
+                                  <a href="/chuot-fuhlen" class="lv3">Chuột Fuhlen</a>
+                                  
+                                  <a href="/chuot-dareu" class="lv3">Chuột Dareu</a>
+                                  
+                                  <a href="/chuot-steel-series" class="lv3">Chuột SteelSeries</a>
+                                  
+                                  <a href="/chuot-razer" class="lv3">Chuột Razer</a>
+                                  
+                                  <a href="/chuot-corsair" class="lv3">Chuột Corsair</a>
+                                  
+                                  <a href="/chuot-logitech" class="lv3">Chuột Logitech</a>
+                                  
+                                  <a href="/chuot-zowie" class="lv3">Chuột Zowie</a>
+                                  
+                                  <a href="/chuot-motospeed" class="lv3">Chuột Motospeed</a>
+                                  
+                                  <a href="/chuot-cooler-master" class="lv3">Chuột Cooler Master</a>
+                                  
+                                  <a href="/chuot-akko" class="lv3">Chuột Akko</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/ban-phim" class="lv2">Bàn Phím</a>
+                                  
+                                  
+                                  <a href="/ban-phim-theo-hang" class="lv3">Bàn phím theo hãng</a>
+                                  
+                                  <a href="/ban-phim-co" class="lv3">Bàn phím cơ</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/ghe-gaming" class="lv2">Ghế GAMING</a>
+                                  
+                                  
+                                  <a href="/ghe-warrior" class="lv3">Ghế Warrior</a>
+                                  
+                                  <a href="/ghe-msi" class="lv3">Ghế MSI</a>
+                                  
+                                  <a href="/ghe-e-dra" class="lv3">Ghế E-Dra</a>
+                                  
+                                  <a href="/ghe-dxracer" class="lv3">Ghế DXRacer</a>
+                                  
+                                  <a href="/ghe-corsair" class="lv3">Ghế Corsair</a>
+                                  
+                                  <a href="/ghe-cooler-master" class="lv3">Ghế Cooler Master</a>
+                                  
+                                  <a href="/ghe-alpha-gamer" class="lv3">Ghế Alpha Gamer</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/webcam" class="lv2">Webcam</a>
+                                  
+                                  
+                                  <a href="/webcam-asus" class="lv3">Webcam ASUS</a>
+                                  
+                                  <a href="/webcam-hikvision" class="lv3">Webcam HIKVISION</a>
+                                  
+                                  <a href="/webcam-razer" class="lv3">Webcam Razer</a>
+                                  
+                                  <a href="/webcam-thronmax" class="lv3">Webcam Thronmax</a>
+                                  
+                                  <a href="/webcam-logitech" class="lv3">Webcam Logitech</a>
+                                  
+                                  <a href="/webcam-genius" class="lv3">Webcam Genius</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/pad-di-chuot" class="lv2">Pad di chuột</a>
+                                  
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/thiet-bi-chuyen-doi" class="lv2">Thiết bị chuyển đổi</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/microphones" class="lv2">Microphones</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/tay-game" class="lv2">Tay Game</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/ban-gaming" class="lv2">Bàn GAMING</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/thiet-bi-studio-stream" class="lv2">Thiết Bị Studio, Stream</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/combo-chuot-phim-tai-nghe" class="lv2">Combo Gear</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/phu-kien-gaming-khac" class="lv2">Phụ Kiện GAMING Khác</a>
+                                  
+                              </div>
+                              
+                          </div>
+                          
+                      </li>
+                      
+                      <li>
+                          <a href="/tan-nhiet" class="itop" style="background: url(/media/category/cat_icon_1255_1635499164.png) no-repeat;">TẢN NHIỆT PC - COOLING</a>
+                          
+                          <div class="sub-menu">
+                              
+                              <div class="box-menu">
+                                  <a href="/nuoc-lam-mat" class="lv2">Nước Làm Mát</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/kem-tan-nhiet" class="lv2">Kem Tản Nhiệt</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/quat-tan-nhiet" class="lv2">Fan tản nhiệt</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/tan-nhiet-nuoc-aio" class="lv2">Tản Nhiệt Nước AIO</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/tan-nhiet-khi" class="lv2">Tản Nhiệt Khí</a>
+                                  
+                              </div>
+                              
+                          </div>
+                          
+                      </li>
+                      
+                      <li>
+                          <a href="/thiet-bi-van-phong" class="itop" style="background: url(/media/category/cat_icon_3403_1646643598.png) no-repeat;">THIẾT BỊ VĂN PHÒNG</a>
+                          
+                          <div class="sub-menu">
+                              
+                              <div class="box-menu">
+                                  <a href="/may-in" class="lv2">Máy in</a>
+                                  
+                              </div>
+                              
+                          </div>
+                          
+                      </li>
+                      
+                      <li>
+                          <a href="/am-thanh" class="itop" style="background: url(/media/category/cat_icon_1522_1646708628.png) no-repeat;">THIẾT BỊ ÂM THANH</a>
+                          
+                          <div class="sub-menu">
+                              
+                              <div class="box-menu">
+                                  <a href="/tai-nghe" class="lv2">Tai Nghe</a>
+                                  
+                                  
+                                  <a href="/tai-nghe-khac" class="lv3">Tai nghe khác</a>
+                                  
+                                  <a href="/tai-nghe-zidli" class="lv3">Tai Nghe ZIDLI</a>
+                                  
+                                  <a href="/tai-nghe-xiberia" class="lv3">Tai Nghe XIBERIA</a>
+                                  
+                                  <a href="/tai-nghe-steelseries" class="lv3">Tai nghe Steelseries</a>
+                                  
+                                  <a href="/tai-nghe-razer" class="lv3">Tai nghe Razer</a>
+                                  
+                                  <a href="/tai-nghe-logitech" class="lv3">Tai nghe Logitech</a>
+                                  
+                                  <a href="/tai-nghe-hyperx" class="lv3">Tai nghe HyperX</a>
+                                  
+                                  <a href="/tai-nghe-gigabyte" class="lv3">Tai Nghe Gigabyte</a>
+                                  
+                                  <a href="/tai-nghe-eaglend" class="lv3">Tai Nghe Eaglend</a>
+                                  
+                                  <a href="/tai-nghe-e-dra" class="lv3">Tai nghe E-dra</a>
+                                  
+                                  <a href="/tai-nghe-dareu" class="lv3">Tai nghe Dareu</a>
+                                  
+                                  <a href="/tai-nghe-corsair" class="lv3">Tai nghe Corsair</a>
+                                  
+                                  <a href="/tai-nghe-cooler-master" class="lv3">Tai nghe Cooler Master</a>
+                                  
+                                  <a href="/tai-nghe-asus" class="lv3">Tai nghe ASUS</a>
+                                  
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/loa" class="lv2">Loa</a>
+                                  
+                              </div>
+                              
+                              <div class="box-menu">
+                                  <a href="/card-am-thanh" class="lv2">Card âm thanh</a>
+                                  
+                              </div>
+                              
+                          </div>
+                          
+                      </li>
+                      
+                      <li>
+                          <a href="/thiet-bi-mang" class="itop" style="background: url(/media/category/cat_icon_1751_1646708646.png) no-repeat;">THIẾT BỊ MẠNG</a>
+                          
+                      </li>
+                      
+                      <li>
+                          <a href="/phan-mem-ban-quyen" class="itop" style="background: url(/media/category/cat_icon_3437_1646643577.png) no-repeat;">PHẦN MỀM BẢN QUYỀN</a>
+                          
+                      </li> -->
+                      
+                  </ul>
+              </div>
+          </div>
+          <div class="main-search">
+              <div class="search-container d-flex">
+                  <form method="get" action="/tim" name="search" class="search-form-group">
+                      <input type="text" placeholder="Nhập tên sản phẩm, từ khóa cần tìm ..." class="search-input" id="js-seach-input" name="q" autocomplete="off">
+                      <button type="submit" class="search-submit">
+                          <i class="fa fa-search" aria-hidden="true"></i>
+                      </button>
+                  </form>
+                  <div class="autocomplete-suggestions" id="js-seach-result"></div>
+              </div>
+              <div class="search-tag">
+                  <a href="/tag/laptop-gaming">Laptop Gaming</a>
+                  <a href="/tag/pc-workstation">PC Workstation</a>
+                  <a href="/tag/pc-gaming">Pc Gaming </a>
+                  <a href="/tag/intel-core-i9">Intel Core I9</a>
+                  <a href="/tag/amd-ryzen-9">AMD Ryzen 9</a>
+                  <a href="/tag/xeon-e5">Xeon E5</a>
+              </div>
+          </div>
+          <div class="header-mid-right">
+              <a href="/san-pham-khuyen-mai">
+                  <span class="icons-2021"></span>
+                  <span class="txt">Khuyến mại</span>
+              </a>
+              <a href="/buildpc">
+                  <span class="icons-2021"></span>
+                  <span class="txt">Xây dựng cấu hình</span>
+              </a>
+              <a href="/cart">
+                <i class="icon-cart"></i>
+                  <span class="txt">Giỏ hàng</span>
+                  <span class="cart-count wishList-count-item"></span>
+              </a>
+          </div>
+      </div>
+  </div>
+</section>
+  <%- body %>
+  <section class="policy-footer">
+    <div class="container">
+        <div class="policy-footer-content">
+            <div class="item">
+                <span class="icons-2021"></span>
+                <span class="txt">
+                    <span class="txt1">CHÍNH SÁCH GIAO HÀNG</span>
+                    <span class="txt2">Nhận hàng và thanh toán tại nhà</span>
+                </span>
+            </div>
+            <div class="item">
+                <span class="icons-2021"></span>
+                <span class="txt">
+                    <span class="txt1">ĐỔI TRẢ DỄ DÀNG</span>
+                    <span class="txt2"></span>
+                </span>
+            </div>
+            <div class="item">
+                <span class="icons-2021"></span>
+                <span class="txt">
+                    <span class="txt1">THANH TOÁN TIỆN LỢI</span>
+                    <span class="txt2">Trả tiền mặt, CK, trả góp 0%</span>
+                </span>
+            </div>
+            <div class="item">
+                <span class="icons-2021"></span>
+                <span class="txt">
+                    <span class="txt1">HỖ TRỢ NHIỆT TÌNH</span>
+                    <span class="txt2">Tư vấn, giải đáp mọi thắc mắc</span>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="clearfix"></div>
+<section class="menu-footer">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-3">
+              <div class="box-mn-ft">
+                  <div class="title-mn-ft">Giới thiệu nguyễn công</div>
+                  <div class="list">
+                      <a href="/gioi-thieu">Giới thiệu công ty</a>
+                      <a href="/lien-he">Thông tin liên hệ</a>
+                      <a href="/tin-tuc">Tin tức</a>
+                  </div>
+              </div>
+              <div class="box-social-ft">
+                  <a href="https://www.facebook.com/MAY.TINH.NGUYEN.CONG" class="face"><i class="fa fa-facebook-f"></i></a>
+                  <a href="https://www.youtube.com/c/NGUYENCONGPC" class="youtube"><i class="fa fa-youtube-play"></i></a>
+                  <a href="/" class="instagram"><i class="fa fa-instagram"></i></a>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="box-mn-ft">
+                  <div class="title-mn-ft">HỖ TRỢ KHÁCH HÀNG</div>
+                  <div class="list">
+                      <a href="/huong-dan-mua-hang-truc-tuyen">Hướng dẫn mua hàng trực tuyến</a>
+                      <a href="/huong-dan-thanh-toan">Hướng dẫn thanh toán</a>
+                      <a href="/lien-he">Gửi yêu cầu bảo hành</a>
+                      <a href="/lien-he">Góp ý, Khiếu Nại</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="box-mn-ft">
+                  <div class="title-mn-ft">CHÍNH SÁCH CHUNG</div>
+                  <div class="list">
+                      <a href="/chinh-sach-quy-dinh-chung">Chính sách, quy định chung</a>
+                      <a href="/chinh-sach-van-chuyen">Chính sách vận chuyển</a>
+                      <a href="/chinh-sach-bao-hanh">Chính sách bảo hành</a>
+                      <a href="/chinh-sach-doi-tra-lai-hang">Chính sách đổi trả và hoàn tiền</a>
+                      <a href="/chinh-sach-xu-ly-khieu-nai">Chính sách xử lý khiếu nại</a>
+                      <a href="/bao-mat-thong-tin-khach-hang">Bảo mật thông tin khách hàng</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="box-mn-ft">
+                  <div class="title-mn-ft">THÔNG TIN KHUYẾN MẠI</div>
+                  <div class="list">
+                      <a href="/tin-khuyen-mai">Thông tin khuyến mại</a>
+                      <a href="/san-pham-xa-hang">Sản phẩm khuyến mại</a>
+                      <a href="/san-pham-ban-chay">Sản phẩm bán chạy</a>
+                      <a href="/san-pham-moi">Sản phẩm mới</a>
+                  </div>
+              </div>
+              <a href="http://online.gov.vn/Home/WebDetails/47532" class="bct"><img src="/static/assets/default/images/bct.png" alt="bct"></a><br>
+              <a href="https://www.dmca.com/Protection/Status.aspx?ID=55181dbf-c94f-4549-986b-f02024115eeb&amp;refurl=https://nguyencongpc.vn/tin-tuc" title="DMCA.com Protection Status" class="dmca-badge"> <img src="https://images.dmca.com/Badges/dmca-badge-w100-5x1-02.png?ID=55181dbf-c94f-4549-986b-f02024115eeb" alt="DMCA.com Protection Status"></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
+          </div>
+      </div>
+  </div>
+</section>
+<div class="clearfix"></div>
+<section class="showroom-footer">
+  <div class="container">
+      <div class="title">HỆ THỐNG CÁC SHOWROOM CỦA Nguyễn Công</div>
+      <div class="clearfix"></div>
+      <div class="row">
+          <div class="col-md-4">
+              <div class="box-showroom-footer">
+                  <div class="title-sr">
+                      <span class="num">1</span>
+                      <span class="txt">Showroom - Hoàng Mai</span>
+                  </div>
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.1495958983155!2d105.84463051437758!3d20.98663969459202!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac6a27ad54c7%3A0xc1ec573bb6aba9ed!2zMzc3IFRyxrDGoW5nIMSQ4buLbmgsIFTDom4gTWFpLCBIb8OgbmcgTWFpLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1634638118778!5m2!1svi!2s" width="528" height="240" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                  <div class="list">
+                      <p><i class="fa fa-map-marker" aria-hidden="true"></i> Số 377 - 379 Trương Định, Tương Mai, Hoàng Mai, Hà Nội</p>
+                      <p><a href="#popup-hotline" data-fancybox="hotline3" class="item-top bg-gradient"> <i class="fa fa-phone fa-flip-horizontal" aria-hidden="true"></i> Bấm gọi tư vấn bán hàng</a></p>
+                      <p><i class="fa fa-phone fa-flip-horizontal" aria-hidden="true"></i> Tư vấn Gaming Gear: 0866666166 Mr Huy</p>
+                      <p><i class="fa fa-phone fa-flip-horizontal" aria-hidden="true"></i> Tư vấn Laptop: 0866.666.266 - Mr Việt Anh<br> <span style="margin-left: 133px;">0812666665 - Mr Hoà</span></p>
+                      
+                  <p><i class="fa fa-phone fa-flip-horizontal" aria-hidden="true"></i> Hỗ trợ kỹ thuât: 0765666668 - 0705666668</p>
+                      <p><i class="fa fa-envelope" aria-hidden="true"></i> Email: info@nguyencongpc.vn</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="box-showroom-footer">
+                  <div class="title-sr">
+                      <span class="num">2</span>
+                      <span class="txt">Showroom - Hà Đông</span>
+                  </div>
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.2831380928696!2d105.78663411437743!3d20.981284494774467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135acce6301baf7%3A0x5183c409cbccf8e3!2zNTIgVHLhuqduIFBow7osIFAuIE3hu5kgTGFvLCBIw6AgxJDDtG5nLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1634638348722!5m2!1svi!2s" width="528" height="240" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                  <div class="list">
+                      <p><i class="fa fa-map-marker" aria-hidden="true"></i> Số 52 Trần Phú, Mộ Lao, Hà Đông, Hà Nội</p>
+                    <p><a href="#popup-hotline" data-fancybox="hotline2" class="item-top bg-gradient"> <i class="fa fa-phone fa-flip-horizontal" aria-hidden="true"></i> Bấm gọi tư vấn bán hàng</a></p>
+                      <p><i class="fa fa-phone fa-flip-horizontal" aria-hidden="true"></i> Tư vấn Gaming Gear: 0866666166 Mr Huy</p>
+                      <p><i class="fa fa-phone fa-flip-horizontal" aria-hidden="true"></i> Tư vấn Laptop: 0866.666.266 - Mr Việt Anh<br> <span style="margin-left: 133px;">0812666665 - Mr Hoà</span></p>
+                      
+                  <p><i class="fa fa-phone fa-flip-horizontal" aria-hidden="true"></i> Hỗ trợ kỹ thuât: 0765666668 - 0705666668</p>
+                      <p><i class="fa fa-envelope" aria-hidden="true"></i> Email: info@nguyencongpc.vn</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="box-showroom-footer">
+                  <div class="title-sr">
+                      <span class="num">3</span>
+                      <span class="txt">Showroom - Quận 10</span>
+                  </div>
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.6417526242626!2d106.66220781425628!3d10.762068662402678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752eef624327c7%3A0x81687947107e9fb5!2zMTc2IFTDom4gUGjGsOG7m2MsIFBoxrDhu51uZyA2LCBRdeG6rW4gMTAsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1634638636773!5m2!1svi!2s" width="528" height="240" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                  <div class="list">
+                      <p><i class="fa fa-map-marker" aria-hidden="true"></i> 176 Tân Phước - Quận 10- TP Hồ Chí Minh</p>
+                    <p><a href="#popup-hotline" data-fancybox="hotline1" class="item-top bg-gradient"> <i class="fa fa-phone fa-flip-horizontal" aria-hidden="true"></i> Bấm gọi tư vấn bán hàng</a></p>
+                      <p><i class="fa fa-phone fa-flip-horizontal" aria-hidden="true"></i> Tư vấn Gaming Gear: 0988882838 Mr Phong</p>
+                      <p><i class="fa fa-phone fa-flip-horizontal" aria-hidden="true"></i> Tư vấn Laptop: 0866.666.266 - Mr Việt Anh <br><span style="margin-left: 133px;">0812666665 - Mr Hoà</span></p>
+                      
+                  <p><i class="fa fa-phone fa-flip-horizontal" aria-hidden="true"></i> Hỗ trợ kỹ thuât: 0799999191</p>
+                      <p><i class="fa fa-envelope" aria-hidden="true"></i> Email: info@nguyencongpc.vn</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+    <!-- /page/plugins-->
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="/page/plugins/jquery-1.12.4.min.js"></script>
+    <script src="/page/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/page/plugins/bootstrap4/js/bootstrap.min.js"></script>
+    <script src="/page/plugins/imagesloaded.pkgd.js"></script>
+    <script src="/page/plugins/masonry.pkgd.min.js"></script>
+    <script src="/page/plugins/jquery.matchHeight-min.js"></script>
+    <script src="/page/plugins/slick/slick/slick.min.js"></script>
+    <script src="/page/plugins/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
+    <script src="/page/plugins/lightGallery-master/dist/js/lightgallery-all.min.js"></script>
+    <script src="/page/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/page/plugins/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+    <script src="/page/plugins/select2/dist/js/select2.full.min.js"></script>
+    <script src="/page/js/notify.min.js"></script>
+    <script src="/page/js/main.js"></script>
+    <script src="/page/js/helper.js"></script>
+    <script src="/page/js/app.js"></script>
+    <script>
+      const toggleSwitch = document.querySelector('#switch-theme');
+      const currentTheme = localStorage.getItem('theme');
+
+      if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        if (currentTheme === 'dark') {
+          toggleSwitch.checked = true;
+        }
+      }
+
+      function switchTheme(e) {
+        if (e.target.checked) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+          localStorage.setItem('theme', 'light');
+        }
+      }
+
+      toggleSwitch.addEventListener('change', switchTheme, false);
+
+    </script>
+    <%- script %>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<div class="ps-page--default" style="padding-bottom: 300px" >
+    <div class="container">
+      <div class="ps-page__content">
+        <div class="ps-tab-root">
+            <ul class="ps-tab-list">
+              <li class="active"><a href="#tab-1">LỊCH SỬ ĐẶT HÀNG</a></li>
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush mt-5">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col" class="sort" data-sort="name">#</th>
+                      <th scope="col" class="sort" data-sort="name">Mã đơn hàng</th>
+                      <th scope="col" class="sort" data-sort="budget">Khách hàng</th>
+                      <th scope="col" class="sort" data-sort="budget">Thành tiền</th>
+                      <th scope="col" class="sort" data-sort="status">Trạng thái</th>
+                      <th scope="col" class="sort" data-sort="status">Người tạo</th>
+                      <th scope="col" class="sort" data-sort="status">Ngày tạo</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody class="list">
+          
+                    <% if (categories) { %>
+                      <% categories.forEach((item,index)=> { %>
+                        <tr id="item-<%= item.id %>">
+                          <th scope="row">
+                            <div class="media align-items-center">
+                              <div class="media-body">
+                                <span class="name mb-0 text-sm">
+                                  <%= item.id %>
+                                </span>
+                              </div>
+                            </div>
+                          </th>
+                          <td class="budget">
+                            <%= item.code %>
+                          </td>
+                          <td class="budget">
+                            <%= item.cFullname %>
+                          </td>
+                          <td class="budget">
+                            <%= item.amount.toLocaleString('vi-VN', { style: 'currency' , currency: 'VND' }) %>
+                          </td>
+                          <td>
+                            <span class="badge badge-dot mr-4">
+                              <span class="status">
+                                <% if (item.status==1) { %>
+                                  <span class="btn btn-success btn-sm" style="font-size: 10px; box-shadow: none;">thành
+                                    công</span>
+                                  <% } %>
+                                    <% if(item.status==3) { %>
+                                      <span class="btn btn-warning btn-sm" style="font-size: 10px; box-shadow: none;">chưa xử
+                                        lý</span>
+                                      <% } %>
+                                        <% if (item.status==2) { %>
+                                          <span class="btn btn-danger btn-sm"
+                                            style="font-size: 10px; box-shadow: none;">hủy</span>
+                                          <% } %>
+                              </span>
+                            </span>
+                          </td>
+                          <td class="budget">
+                            <%= item.uFullname %>
+                          </td>
+                          <td class="budget">
+                            <%= moment(item.createTime).format('DD-MM-YYYY hh:mm') %>
+                          </td>
+                          <td class="text-right">
+                            <div class="dropdown">
+                              <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v"></i>
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                <button type="button" class="dropdown-item btn-edit" data-toggle="modal"
+                                  onclick="getOrderDetail(<%= item.id %>)" data-target="#exampleModalEdit">
+                                  Sửa
+                                </button>
+                                <button type="button" class="dropdown-item" data-toggle="modal"
+                                  data-target="#exampleModalDelete-<%= item.id %>">
+                                  Xóa
+                                </button>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <% }) %>
+                          <% } %>
+                  </tbody>
+                </table>
+                <% if (categories?.length==0) { %>
+                  <div class="alert alert-warning text-center">
+                    Không tìm thấy kết quả nào
+                  </div>
+                  <% } %>
+              </div>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+          
+  
+              <% if (errorValidate) { %>
+                const err = '<%= errorValidate %>';
+                $.notify("<%= errorValidate %>", 'danger');
+              <%}%>
+              
+              <% if (successAlert) { %>
+                const err = '<%= successAlert %>';
+                $.notify("<%= successAlert %>", 'success');
+              <%}%>
+  
+  </script>

@@ -1,0 +1,368 @@
+<div class="col">
+  <div class="card">
+    <!-- Card header -->
+    <div class="card-header border-0">
+      <h3 class="mb-0">LIÊN HỆ</h3>
+    </div>
+    <!-- Light table -->
+    <div class="box-loading load-data" style="display: none;">
+      <div class="loadingio-spinner-rolling-lwtpylw27h">
+        <div class="ldio-5lswg297lfp">
+          <div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col" class="sort" data-sort="name">#</th>
+            <th scope="col" class="sort" data-sort="budget">Tên</th>
+            <th scope="col" class="sort" data-sort="budget">Email</th>
+            <th scope="col" class="sort" data-sort="budget">Điện thoại</th>
+            <th scope="col" class="sort" data-sort="status">Trạng thái</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody class="list">
+          <% if (categories) { %>
+            <% categories.forEach((item,index)=> { %>
+              <tr id="item-<%= item.id %>">
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="name mb-0 text-sm">
+                        <%= item.id %>
+                      </span>
+                    </div>
+                  </div>
+                </th>
+                <td class="budget">
+                  <%= item.fullname %>
+                </td>
+                <td class="budget">
+                  <%= item.email %>
+                </td>
+                <td class="budget">
+                  <%= item.phone %>
+                </td>
+                <td>
+                  <span class="badge badge-dot mr-4">
+                    <span class="status">
+                      <% if (item.contactStatus === 1 ) { %>
+                        <span class="badge badge-success">Đã xử lý</span>
+                        <% } else{ %>
+                          <span class="badge badge-danger">Chưa xử lý</span>
+                          <% } %>
+
+                    </span>
+                  </span>
+                </td>
+                <td class="text-right">
+                  <div class="dropdown">
+                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                      <button type="button" class="dropdown-item btn-edit" data-toggle="modal"
+                        onclick="editItem(<%= JSON.stringify(item) %>)" data-target="#exampleModalEdit">
+                        Sửa
+                      </button>
+                      <button type="button" class="dropdown-item" data-toggle="modal"
+                        data-target="#exampleModalDelete-<%= item.id %>">
+                        Xóa
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <% }) %>
+                <% } %>
+        </tbody>
+      </table>
+      <% if (categories?.length==0) { %>
+        <div class="alert alert-warning text-center">
+          Không tìm thấy kết quả nào
+        </div>
+        <% } %>
+    </div>
+    <!-- Card footer -->
+    <div class="card-footer py-4">
+      <nav aria-label="...">
+        <ul class="pagination justify-content-end mb-0">
+          <% for (i=1; i <=total; i ++) { %>
+            <% if(curentPage==i) { %>
+              <li class="page-item active">
+                <% if (q !='' || filter !='' ) { %>
+                  <a class="page-link"
+                    href="/admin/contact/search?q=<%= q.replace(/%/g,'') %>&filterStatus=<%=filter%>&page=<%= i %>">
+                    <%= i %>
+                  </a>
+                  <% } else { %>
+                    <a class="page-link" href="/admin/contact/?page=<%= i %>">
+                      <%= i %>
+                    </a>
+                    <% } %>
+
+              </li>
+              <%} else { %>
+                <li class="page-item">
+
+                  <% if (q !='' || filter !='' ) { %>
+                    <a class="page-link"
+                      href="/admin/contact/search?q=<%= q.replace(/%/g,'') %>&filterStatus=<%=filter%>&page=<%= i %>">
+                      <%= i %>
+                    </a>
+                    <% } else { %>
+                      <a class="page-link" href="/admin/contact/?page=<%= i %>">
+                        <%= i %>
+                      </a>
+                      <% } %>
+                </li>
+                <%} %>
+                  <% } %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<!-- Sửa -->
+<div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="box-loading load-modal" style="display: none;">
+    <div class="loadingio-spinner-rolling-lwtpylw27h">
+      <div class="ldio-5lswg297lfp">
+        <div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">LIÊN HỆ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Chủ đề</label>
+          <input disabled type="text" class="form-control" name="subject">
+        </div>
+        
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Nội dung</label>
+          <textarea disabled class="form-control" name="content" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Trạng thái</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="status">
+            <option value="1">ĐÃ XỬ LÝ</option>
+            <option value="0">CHƯA XỬ LÝ</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button onclick="updateItem(event)" type="submit" class="btn btn-primary">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- XÓA  -->
+<% if (categories) { %>
+  <% categories.forEach((item,index)=> { %>
+    <div class="modal fade" id="exampleModalDelete-<%= item.id %>" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="box-loading load-modal" style="display: none;">
+        <div class="loadingio-spinner-rolling-lwtpylw27h">
+          <div class="ldio-5lswg297lfp">
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">XÓA LOẠI</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Bạn có muốn xóa liên hệ này ?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <a href="/admin/contact/delete/<%= item.id %>" class="btn btn-primary">Lưu</a>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+      <% } %>
+
+          <!-- CODE JS  -->
+
+
+          <script>
+
+            // DATE PICKER 
+
+            const startDate = document.querySelector('input[name="startDate"]');
+            const endDate = document.querySelector('input[name="endDate"]');
+            const now = moment().format("DD/MM/yyyy");
+            const fromDate = moment().subtract(7, 'days').format("DD/MM/yyyy");
+
+            // notifycation
+            toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": true,
+              "progressBar": false,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
+
+            // loading
+            const loadingData = document.querySelector('.box-loading.load-data');
+            const loadingModal = document.querySelector('.box-loading.load-modal');
+            const formPost = document.querySelector('form[method=POST].create-item');
+            
+              <% if (!errorValidate && !successAlert) { %>
+              window.addEventListener('load', onLoading);
+            <%}%>
+
+              function onLoading(event) {
+                loadingData.style.display = 'flex';
+                setTimeout(() => {
+                  loadingData.style.display = 'none';
+                }, 500);
+              }
+
+            function onLoadingModal(event) {
+              event.preventDefault();
+              loadingModal.style.display = 'flex';
+              setTimeout(() => {
+                loadingModal.style.display = 'none';
+                formPost.submit();
+              }, 500);
+            }
+
+            function reload() {
+              window.location.href = "/admin/contact"
+            }
+
+            // EDIT
+            let editId = 0;
+            let prevDataEdit = null;
+            const loadingModalEdit = document.querySelector('#exampleModalEdit .box-loading.load-modal');
+            const formEdit = document.querySelector('#exampleModalEdit');
+            const inputSubjectEdit = document.querySelector('#exampleModalEdit input[name=subject]');
+            const inputContentEdit = document.querySelector('#exampleModalEdit textarea[name=content]');
+            const inputStatusEdit = document.querySelector('#exampleModalEdit select[name=status]');
+            const optionEdits = document.querySelector('#exampleModalEdit select[name=status]');
+
+            function editItem(item) {
+              if (prevDataEdit?.fullname != item.fullname) {
+                prevDataEdit = item;
+                editId = item.id;
+                inputSubjectEdit.value = item.subject;
+                inputContentEdit.value = item.content;
+                optionEdits.value = item.contactStatus;
+              }
+
+            }
+
+            function updateItem(event) {
+              event.preventDefault();
+              // get data
+              var dataEdit = {
+                status: inputStatusEdit.value
+              };
+
+              // start loading
+              loadingModalEdit.style.display = 'flex';
+              // call api
+              fetch(`/admin/contact/update/${editId}`, {
+                method: 'PUT', // or 'PUT'
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataEdit),
+              })
+                .then(response => response.json())
+                .then(data => {
+                  if (data.success) {
+                    setTimeout(() => {
+                      // end loading
+
+                      loadingModalEdit.style.display = 'none';
+
+                      // notify
+
+                      toastr["success"](data.message);
+
+                      // close modal
+
+                      $('#exampleModalEdit').modal('hide');
+
+                      //  edit content html
+
+                      var eleName = document.querySelector(`#item-${editId} td.budget`);
+                      var eleStatus = document.querySelector(`#item-${editId} span.status .badge`);
+                      eleName.textContent = data.name;
+
+                      if (data.contactStatus == 1) {
+                        eleStatus.className = 'badge badge-success';
+                        eleStatus.textContent = 'ĐÃ XỬ LÝ';
+                      }
+                      else {
+                        eleStatus.className = 'badge badge-danger';
+                        eleStatus.textContent = 'CHƯA XỬ LÝ';
+                      }
+
+                    }, 500);
+
+                  }
+                  else {
+                    console.log('error:', data)
+                  }
+                })
+                .catch((error) => {
+                  console.error('Error:', error);
+                })
+                .finally(() => {
+                })
+                ;
+              // notify
+
+              // end loading
+
+            }
+
+              <% if (errorValidate) { %>
+              const err = '<%= errorValidate %>';
+              toastr["error"]("<%= errorValidate %>")
+
+                <%}%>
+                  <% if (successAlert) { %>
+              toastr["success"]("<%= successAlert %>")
+              <%}%>
+          </script>

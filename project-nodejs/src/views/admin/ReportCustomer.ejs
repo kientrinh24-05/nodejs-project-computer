@@ -1,0 +1,347 @@
+<div class="col">
+    <div class="card">
+        <!-- Card header -->
+        <div class="card-header border-0">
+            <h3 class="mb-0">BÁO CÁO KHÁCH HÀNG </h3>
+        </div>
+
+        <!-- CHART  -->
+        <div class="col-12">
+            <h5 class="text-center mb-5" style="font-weight:400;font-size:20px; color: #414141">
+                Biểu đồ thống kê tương tác khách hàng <br />
+                <small id="time" style="font-size: 13px; color: lightseagreen;"></small>
+            </h5>
+             <div class="d-flex justify-content-center">
+                 <figure class="highcharts-figure">
+                     <div id="container"></div>
+                 </figure>
+             </div>
+        </div>
+
+        <!-- Light table -->
+        <div class="box-loading load-data" style="display: none;">
+            <div class="loadingio-spinner-rolling-lwtpylw27h">
+                <div class="ldio-5lswg297lfp">
+                    <div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="card">
+        <div class="table-responsive mt-5">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col" class="sort text-center" data-sort="name">Thời gian</th>
+                        <th scope="col" class="sort text-center" data-sort="budget">Khách hàng mới</th>
+                        <th scope="col" class="sort text-center" data-sort="status">Khách hàng cũ</th>
+                        <th scope="col" class="sort text-center" data-sort="status">Tỉ lệ khách hàng mới</th>
+                        <th scope="col" class="sort text-center" data-sort="status">Tỉ lệ khách hàng cũ</th>
+                    </tr>
+                </thead>
+                <tbody id="report-order-table" class="list">
+                </tbody>
+                <tfoot id="report-order-total">
+
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- LỌC -->
+<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">LỌC BÁO CÁO KHÁCH HÀNG </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="form-group mt-3">
+                        <div>
+                            <label for="exampleFormControlInput1">Thời gian</label>
+                        </div>
+                        <div class="input-daterange datepicker row align-items-center">
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                        </div>
+                                        <input name="startDate" class="form-control" placeholder="Start date"
+                                            type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                        </div>
+                                        <input name="endDate" class="form-control" placeholder="End date" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="q" value="<%= q.replace(/%/g,'') %>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button onclick="onFilter()" type="button" class="btn btn-primary">Lọc</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    #report-order-table tr:hover{
+        background-color: rgb(124, 181, 236,0.5);
+        font-weight: bold;
+    }
+    #report-order-total tr:hover{
+        background-color: rgb(124, 181, 236,0.5);
+        font-weight: bold;
+    }
+</style>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script>
+    uploadFile();
+    // loading
+    const loadingData = document.querySelector('.box-loading.load-data');
+    const loadingModal = document.querySelector('.box-loading.load-modal');
+    const formPost = document.querySelector('form[method=POST].create-item');
+              
+        <% if (!errorValidate && !successAlert) { %>
+        window.addEventListener('load', onLoading);
+              <%}%>
+
+        function onLoading(event) {
+            loadingData.style.display = 'flex';
+            setTimeout(() => {
+                loadingData.style.display = 'none';
+            }, 500);
+        }
+
+    function onLoadingModal(event) {
+        event.preventDefault();
+        loadingModal.style.display = 'flex';
+        setTimeout(() => {
+            loadingModal.style.display = 'none';
+            formPost.submit();
+        }, 500);
+    }
+
+    function reload() {
+        window.location.href = "/admin/report/customer"
+    }
+</script>
+<script>
+
+    // DATE PICKER 
+    const startDate = document.querySelector('input[name="startDate"]');
+    const endDate = document.querySelector('input[name="endDate"]');
+    const now = moment().format("DD/MM/yyyy");
+    const fromDate = moment().subtract(6, 'days').format("DD/MM/yyyy");
+    startDate.value = fromDate;
+    endDate.value = now;
+
+    $(function () {
+        $('input[name="startDate"]').datepicker({ format: 'dd/mm/yyyy' }).bind("change", function () {
+            startDate.value = moment(startDate.value).format("DD/MM/yyyy");
+        })
+        $('input[name="endDate"]').datepicker({ format: 'dd/mm/yyyy' }).bind("change", function () {
+            endDate.value = moment(endDate.value).format("DD/MM/yyyy");
+        })
+    });
+
+    // FUNC RENDER LIST DATE
+    const enumerateDaysBetweenDates = function (startDate, endDate) {
+        var dates = [];
+        var currDate = moment(startDate).startOf('day');
+        var lastDate = moment(endDate).startOf('day');
+
+        while (currDate.add(1, 'days').diff(lastDate) < 0) {
+            dates.push(currDate.clone().toDate());
+        }
+        return dates;
+    };
+
+    // FUNC FILL DATA CHART 
+    const fillData = (data) => {
+        return data.map(item => item.total);
+    }
+
+    // FUNC onFilter
+    const onFilter = () => {
+        let start = moment(startDate.value, 'MM-DD-YYYY');
+        start = start.format('yyyy/MM/DD') != "Invalid date"
+            ? start.format('yyyy/MM/DD')
+            : moment(startDate.value, 'DD-MM-YYYY').format('yyyy/MM/DD');
+
+        let end = moment(endDate.value, 'MM-DD-YYYY');
+        end = end.format('yyyy/MM/DD') != "Invalid date"
+            ? end.format('yyyy/MM/DD')
+            : moment(endDate.value, 'DD-MM-YYYY').format('yyyy/MM/DD');
+
+        fetch(`/admin/report/customer/search?startDate=${start}&endDate=${end}`)
+            .then(response => response.json())
+            .then(data => {
+                renderDataTable(data);
+                renderCharts(listDates, data);
+                time.innerHTML = moment(startDate.value).format("DD/MM/YYYY") + ' - ' + moment(endDate.value).format('DD/MM/YYYY');
+                $('#filterModal').modal('hide');
+            })
+
+    }
+
+    // RENDER TABLE
+    const tableBodyReportOrder = document.querySelector('#report-order-table');
+    const tableFooterReportOrder = document.querySelector('#report-order-total');
+
+    const row = (record) => {
+        return (
+            `   <tr class="text-center">
+                        <td>${record.day}</td>
+                        <td>${record.totalNewCustomer}</td>
+                        <td>${record.totalOldCustomer}</td>
+                        <td>${record.totalNewCustomer / record.total * 100} %</td>
+                        <td>${record.totalOldCustomer / record.total * 100} %</td>
+                    </tr>` )
+    };
+
+    const rowFooterRender = (record) => {
+        return (
+            `   <tr class="text-center">
+                        <td>Tổng</td>
+                        <td>${record.totalNewCustomer}</td>
+                        <td>${record.totalOldCustomer}</td>
+                        <td>${(record.totalNewCustomer / (record.totalNewCustomer + record.totalOldCustomer) * 100).toFixed(2)} %</td>
+                        <td>${(record.totalOldCustomer / (record.totalNewCustomer + record.totalOldCustomer) * 100).toFixed(2)} %</td>
+                    </tr>` )
+    };
+
+    const renderDataTable = (data) => {
+        let rows = '';
+        let rowFooter = {
+            totalNewCustomer: 0,
+            totalOldCustomer: 0,
+        };
+
+        data.forEach(item => {
+            rows += row(item);
+            rowFooter.totalNewCustomer += item.totalNewCustomer;
+            rowFooter.totalOldCustomer += item.totalOldCustomer;
+        });
+
+        tableBodyReportOrder.innerHTML = rows;
+        tableFooterReportOrder.innerHTML = rowFooterRender(rowFooter);
+    }
+
+
+    const endOfMonth = moment().format('YYYY-MM-DD hh:mm');
+    const startOfMonth = moment().subtract(6, 'days').format('YYYY-MM-DD hh:mm');
+    const startD = moment().add('-7', 'days');
+    const curentD = moment().add('1', 'days');
+    const listDates = enumerateDaysBetweenDates(startD, curentD).map(item => moment(item).format("DD/MM/YYYY"));
+
+
+    // RENDER LABEL TIME
+    const time = document.querySelector('#time');
+    time.innerHTML = moment(startOfMonth).format("DD/MM/YYYY") + ' - ' + moment(endOfMonth).format('DD/MM/YYYY');
+
+
+
+    // GET DATA REPORT
+    const dataReport = <%- JSON.stringify(categories) %>;
+
+    const renderCharts = (listDates, dataFill) => {
+                    let totalOldCustomer = 0;
+                    let totalNewCustomer = 0;
+                    dataFill.forEach(item => {
+                        totalOldCustomer += item.totalOldCustomer;
+                        totalNewCustomer += item.totalNewCustomer;
+                    });
+
+                    Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie',
+                        width: 500
+                    },
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Loại khách hàng',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'Khách hàng cũ',
+                            y: totalOldCustomer,
+                        }, {
+                            name: 'Khách hàng mới',
+                            y: totalNewCustomer
+                        }]
+                    }]
+                });
+            }
+
+
+    // FIRST RENDER
+    renderCharts(listDates, dataReport);
+    renderDataTable(dataReport);
+
+    function exportExcel() {
+        let start = undefined;
+        let end = undefined;
+        if (startDate != undefined) {
+            start = moment(startDate.value, 'MM-DD-YYYY');
+            start = start.format('yyyy/MM/DD') != "Invalid date"
+                ? start.format('yyyy/MM/DD')
+                : moment(startDate.value, 'DD-MM-YYYY').format('yyyy/MM/DD');
+        }
+        if (endDate != undefined) {
+            end = moment(endDate.value, 'MM-DD-YYYY');
+            end = end.format('yyyy/MM/DD') != "Invalid date"
+                ? end.format('yyyy/MM/DD')
+                : moment(endDate.value, 'DD-MM-YYYY').format('yyyy/MM/DD');
+
+        }
+
+        window.location.href = `/admin/report/customer/excel/export?startDate=${start}&endDate=${end}`
+    }
+
+</script>

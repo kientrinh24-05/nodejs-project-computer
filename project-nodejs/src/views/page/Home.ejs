@@ -1,0 +1,24 @@
+<% products.forEach(element=> { %>
+  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 ">
+    <div class="ps-product">
+      <div class="ps-product__thumbnail"><img class="ps-product__image" style="width: 270px; height: 270px" src="<%= element.thumbnail %>" alt="" /><img
+          class="ps-product__image-alt" href="/san-pham/<%= element.id %>"></a>
+        <div class="ps-product__actions">
+          <a class="add-cart" data-product="<%= JSON.stringify(element) %>"> THÊM VÀO GIỎ</a>
+        </div>
+      </div>
+      <div class="ps-product__content"><a class="ps-product__title" href="/san-pham/<%= element.id %>"><%= element.title %></a>
+        <select class="ps-rating" data-read-only="true">
+          <% for( let index=0; index < element.rate; index++ ) { %>
+            <option value="1">
+              <%= index %>
+            </option>
+            <% } %>
+        </select>
+      </div>
+      <p class="ps-product__price">
+        <%= element.price.toLocaleString('it-IT', { style: 'currency' , currency: 'VND' }) %>
+      </p>
+    </div>
+  </div>
+  <% }) %>

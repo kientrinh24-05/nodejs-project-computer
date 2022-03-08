@@ -1,0 +1,642 @@
+<style>
+  .ck-editor__editable_inline {
+    min-height: 105px;
+  }
+</style>
+<div class="col">
+  <div class="card">
+    <!-- Card header -->
+    <div class="card-header border-0">
+      <h3 class="mb-0">KHÁCH HÀNG</h3>
+    </div>
+    <!-- Light table -->
+    <div class="box-loading load-data" style="display: none;">
+      <div class="loadingio-spinner-rolling-lwtpylw27h">
+        <div class="ldio-5lswg297lfp">
+          <div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col" class="sort" data-sort="name">#</th>
+            <th scope="col" class="sort" data-sort="budget"></th>
+            <th scope="col" class="sort" data-sort="budget">Tên</th>
+            <th scope="col" class="sort" data-sort="budget">Điện thoại</th>
+            <th scope="col" class="sort" data-sort="budget">Email</th>
+            <th scope="col" class="sort" data-sort="status">Trạng thái</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody class="list">
+          <% if (categories) { %>
+            <% categories.forEach((item,index)=> { %>
+              <tr id="item-<%= item.id %>">
+                <td scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="name mb-0 text-sm">
+                        <%= item.id %>
+                      </span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <% if (item.avatar=='' || item.avatar==null ) { %>
+                    <img style="width: 50px; border-radius: 50%;" src="/static/assets/uploads/admin/customer-avatar.png"
+                      alt="">
+                    <% } %>
+                      <% if (item.avatar !=null ) { %>
+                        <img style="width: 40px; border-radius: 50%;" src="<%= item.avatar  %> " alt="">
+                        <% } %>
+                </td>
+                <td class="budget fullname">
+                  <%= item.fullname %>
+                </td>
+                <td class="budget phone">
+                  <%= item.phone %>
+                </td>
+                <td class="budget email">
+                  <%= item.email %>
+                </td>
+                <td>
+                  <span class="badge badge-dot mr-4">
+                    <span class="status">
+                      <% if (item.userStatus==1 ) { %>
+                        <span class="badge badge-success">hoạt động</span>
+                        <% } else{ %>
+                          <span class="badge badge-danger">không hoạt động'</span>
+                          <% } %>
+
+                    </span>
+                  </span>
+                </td>
+                <td class="text-right">
+                  <div class="dropdown">
+                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                      <button type="button" class="dropdown-item btn-edit" data-toggle="modal"
+                        onclick="editItem(<%= JSON.stringify(item) %>)" data-target="#exampleModalEdit">
+                        Sửa
+                      </button>
+                      <button type="button" class="dropdown-item" data-toggle="modal"
+                        data-target="#exampleModalDelete-<%= item.id %>">
+                        Xóa
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <% }) %>
+                <% } %>
+        </tbody>
+      </table>
+      <% if (categories?.length==0) { %>
+        <div class="alert alert-warning text-center">
+          Không tìm thấy kết quả nào
+        </div>
+        <% } %>
+    </div>
+    <!-- Card footer -->
+    <div class="card-footer py-4">
+      <nav aria-label="...">
+        <ul class="pagination justify-content-end mb-0">
+          <% console.log(total,'total') %>
+
+          <% for (i=1; i <=total; i ++) { %>
+            <% if(curentPage==i) { %>
+              <li class="page-item active">
+                <% if (q !='' || filter !='' ) { %>
+                  <a class="page-link"
+                    href="/admin/customer/search?q=<%= q.replace(/%/g,'') %>&filterStatus=<%=filter%>&page=<%= i %>">
+                    <%= i %>
+                  </a>
+                  <% } else { %>
+                    <a class="page-link" href="/admin/customer/?page=<%= i %>">
+                      <%= i %>
+                    </a>
+                    <% } %>
+
+              </li>
+              <%} else { %>
+                <li class="page-item">
+
+                  <% if (q !='' || filter !='' ) { %>
+                    <a class="page-link"
+                      href="/admin/customer/search?q=<%= q.replace(/%/g,'') %>&filterStatus=<%=filter%>&page=<%= i %>">
+                      <%= i %>
+                    </a>
+                    <% } else { %>
+                      <a class="page-link" href="/admin/customer/?page=<%= i %>">
+                        <%= i %>
+                      </a>
+                      <% } %>
+                </li>
+                <%} %>
+                  <% } %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+<!-- THÊM -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="box-loading load-modal" style="display: none;">
+    <div class="loadingio-spinner-rolling-lwtpylw27h">
+      <div class="ldio-5lswg297lfp">
+        <div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-dialog modal-dialog-centered mw-100" style="width: 55%" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">THÊM KHÁCH HÀNG</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="POST" class="create-item" action="/admin/customer/create">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <h3 class="mb-4">Thông tin chính</h3>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Tài khoản</label>
+                <input type="text" class="form-control" name="username">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Họ tên</label>
+                <input type="text" class="form-control" name="fullname">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Email</label>
+                <input type="text" class="form-control" name="email">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Điện thoại</label>
+                <input type="text" class="form-control" name="phone">
+              </div>
+            </div>
+            <div class="col">
+              <h3 class="mb-4">Thông tin bổ sung</h3>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Địa chỉ</label>
+                <input type="text" class="form-control" name="address">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button onclick="onLoadingModal(event)" type="submit" class="btn btn-primary">Lưu</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Sửa -->
+
+<div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="box-loading load-modal" style="display: none;">
+    <div class="loadingio-spinner-rolling-lwtpylw27h">
+      <div class="ldio-5lswg297lfp">
+        <div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-dialog modal-dialog-centered mw-100" style="width:55%" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">CẬP NHẬT KHÁCH HÀNG</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col">
+            <h3 class="mb-4">Thông tin chính</h3>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Tài khoản</label>
+              <input type="text" class="form-control" name="username" disabled>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Mật khẩu</label>
+              <input type="password" class="form-control" name="password" placeholder="******">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Họ tên</label>
+              <input type="text" class="form-control" name="fullname">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Email</label>
+              <input type="text" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Điện thoại</label>
+              <input type="text" class="form-control" name="phone">
+            </div>
+          </div>
+          <div class="col">
+            <h3 class="mb-4">Thông tin bổ sung</h3>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Địa chỉ</label>
+              <input type="text" class="form-control" name="address">
+            </div>
+            
+            <div class="form-group">
+              <div class="form-group">
+                <label>Ghi chú</label>
+                <textarea name="note" id="editorEdit"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Trạng thái</label>
+                <select class="form-control" name="userStatus">
+                  <option value="1">hoạt động</option>
+                  <option value="0">không hoạt động</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button onclick="updateItem(event)" type="submit" class="btn btn-primary">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- XÓA  -->
+<% if (categories) { %>
+  <% categories.forEach((item,index)=> { %>
+    <div class="modal fade" id="exampleModalDelete-<%= item.id %>" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="box-loading load-modal" style="display: none;">
+        <div class="loadingio-spinner-rolling-lwtpylw27h">
+          <div class="ldio-5lswg297lfp">
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">XÓA KHÁCH HÀNG</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Bạn có muốn xóa khách hàng này ?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <a href="/admin/customer/delete/<%= item.id %>" class="btn btn-primary">Lưu</a>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+      <% } %>
+
+        <!-- IMPORT EXCEL  -->
+        <button style="opacity: 0;" type="button" class="btn btn-block btn-warning mb-3" data-toggle="modal"
+          data-target="#modal-notification">Notification</button>
+        <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification"
+          aria-hidden="true">
+          <div class="modal-dialog  modal-dialog-centered modal-" role="document">
+            <div class="modal-content ">
+
+              <div class="modal-header">
+                <h6 class="modal-title" id="modal-title-notification">Import excel danh sách khách hàng</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+
+                <div class="py-3 text-center">
+                  <div class="position-relative">
+                    <div class="position-absolute" style="
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%,-50%);
+                        width: 100px;
+                        /* opacity: 0; */
+                        cursor: pointer;
+                        height: 100%;
+                    ">
+                      <form class="form-upload h-100 d-block" action="/admin/upload?path=admin" method="POST"
+                        enctype="multipart/form-data">
+                        <div class="h-100">
+                          <input type="file" name="file" style="
+                              display: block;
+                              height: 100%;
+                              width: 100%;
+                              cursor: pointer;
+                              opacity: 0;
+                          ">
+                        </div>
+                      </form>
+                    </div>
+                    <div>
+                      <i class="fas fa-file-upload ni-3x"></i>
+                      <div>
+                        <span id="excel-name" style="font-size: 12px" class="text-primary"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <h4 class="heading mt-4">Tải lên file Excel</h4>
+                  <p>Tải xuống file mẫu <a class="text-success" href="/static/assets/uploads/admin/danh-muc.xlsx">click
+                      vào đây</a></p>
+                </div>
+
+              </div>
+
+              <div class="modal-footer">
+                <form action="/admin/customer/excel/import" method="POST">
+                  <input type="hidden" name="path-excel-import">
+                  <button type="submit" class="btn btn-white">Lưu</button>
+                </form>
+                <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Đóng</button>
+              </div>
+
+            </div>
+          </div>
+
+
+          <!-- FILTER  -->
+
+          <!-- CODE JS  -->
+
+
+          <script>
+
+            // ckeditor
+            ClassicEditor
+              .create(document.querySelector('#editor'), {
+                toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+                heading: {
+                  options: [
+                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                  ]
+                }
+              })
+              .catch(error => {
+                console.log(error);
+              });
+
+
+            // Update note
+            ClassicEditor
+              .create(document.querySelector('#editorEdit'), {
+                toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+                heading: {
+                  options: [
+                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                  ]
+                }
+              })
+              .then(editor => {
+                window.editor = editor;
+              })
+              .catch(error => {
+                console.log(error);
+              });
+            // DATE PICKER 
+
+            const startDate = document.querySelector('input[name="startDate"]');
+            const endDate = document.querySelector('input[name="endDate"]');
+            const now = moment().format("DD/MM/yyyy");
+            const fromDate = moment().subtract(7, 'days').format("DD/MM/yyyy");
+            // startDate.value = fromDate;
+            // endDate.value = now;
+
+            const birthDate = document.querySelector('input[name="birthDate"]');
+            // birthDate.value = fromDate;
+            // upload file 
+
+            // let thumbnail = document.querySelector('#post-thumbnail');
+            // let inputThumbnail = document.querySelector("input[name='Thumbnail']");
+            function uploadFile(file) {
+
+              const inputSelectFile = document.querySelector('.form-upload input[type="file"]');
+              const inputPath = document.querySelector('input[name="path-excel-import"]');
+              const excelName = document.querySelector('#excel-name');
+
+              inputSelectFile.addEventListener('change', function () {
+                var url = "/admin/upload?path=admin";
+                var formData = new FormData();
+                formData.append("file", inputSelectFile.files[0]);
+                fetch(url, {
+                  method: 'POST',
+                  body: formData
+                })
+                  .then(response => response.json())
+                  .then(data => {
+                    inputPath.value = data.path;
+                    excelName.innerHTML = data.path.substring(data.path.lastIndexOf("/") + 1);
+                    // thumbnail.setAttribute("src", data.dbPath);
+                    // inputThumbnail.value = data.dbPath;
+                  })
+                  .catch(err => {
+                    console.log(err);
+                  })
+              })
+            }
+
+            uploadFile();
+
+            // notifycation
+            toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": true,
+              "progressBar": false,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
+
+            // loading
+            const loadingData = document.querySelector('.box-loading.load-data');
+            const loadingModal = document.querySelector('.box-loading.load-modal');
+            const formPost = document.querySelector('form[method=POST].create-item');
+            
+              <% if (!errorValidate && !successAlert) { %>
+              window.addEventListener('load', onLoading);
+            <%}%>
+
+              function onLoading(event) {
+                loadingData.style.display = 'flex';
+                setTimeout(() => {
+                  loadingData.style.display = 'none';
+                }, 500);
+              }
+
+            function onLoadingModal(event) {
+              event.preventDefault();
+              loadingModal.style.display = 'flex';
+              setTimeout(() => {
+                loadingModal.style.display = 'none';
+                formPost.submit();
+              }, 500);
+            }
+
+            function reload() {
+              window.location.href = "/admin/customer"
+            }
+
+            function exportExcel() {
+              window.location.href = "/admin/customer/excel/export"
+            }
+            // EDIT
+            let editId = 0;
+            let prevDataEdit = null;
+            const loadingModalEdit = document.querySelector('#exampleModalEdit .box-loading.load-modal');
+            const formEdit = document.querySelector('#exampleModalEdit');
+            const inputNameEdit = document.querySelector('#exampleModalEdit input[name=fullname]');
+            const inputUsernameEdit = document.querySelector('#exampleModalEdit input[name=username]');
+            const inputEmailEdit = document.querySelector('#exampleModalEdit input[name=email]');
+            const inputPhoneEdit = document.querySelector('#exampleModalEdit input[name=phone]');
+            const inputAddressEdit = document.querySelector('#exampleModalEdit input[name=address]');
+            const inputNoteEdit = document.querySelector('#exampleModalEdit textarea[name=note]');
+            const optionEdits = document.querySelector('#exampleModalEdit select[name=userStatus]');
+   
+
+            function editItem(item) {
+              if (prevDataEdit?.fullname != item.fullname) {
+                inputNameEdit.value = item.fullname;
+                inputUsernameEdit.value = item.username;
+                inputEmailEdit.value = item.email;
+                inputPhoneEdit.value = item.phone;
+                inputAddressEdit.value = item.address;
+                window.editor.setData(item.note);
+
+              }
+              optionEdits.value = item.userStatus;
+              prevDataEdit = item;
+              editId = item.id;
+
+            }
+
+            function updateItem(event) {
+              event.preventDefault();
+              // get data
+              var dataEdit = {
+                fullname: inputNameEdit.value,
+                username: inputUsernameEdit.value,
+                email: inputEmailEdit.value,
+                phone: inputPhoneEdit.value,
+                address: inputAddressEdit.value,
+                userStatus: optionEdits.value,
+                note: window.editor.getData()
+              };
+
+              // start loading
+              loadingModalEdit.style.display = 'flex';
+              // call api
+              fetch(`/admin/customer/update/${editId}`, {
+                method: 'PUT', // or 'PUT'
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataEdit),
+              })
+                .then(response => response.json())
+                .then(data => {
+                  if (data.success) {
+                    setTimeout(() => {
+                      // end loading
+
+                      loadingModalEdit.style.display = 'none';
+
+                      // notify
+
+                      toastr["success"](data.message);
+
+                      // close modal
+
+                      $('#exampleModalEdit').modal('hide');
+
+                      //  edit content html
+
+                      var eleName = document.querySelector(`#item-${editId} td.budget.fullname`);
+                      var eleEmail = document.querySelector(`#item-${editId} td.budget.email`);
+                      var elePhone = document.querySelector(`#item-${editId} td.budget.phone`);
+                      var eleStatus = document.querySelector(`#item-${editId} span.status .badge`);
+                      eleName.textContent = data.fullname;
+                      eleEmail.textContent = data.email;
+                      elePhone.textContent = data.phone;
+
+                      if (data.status == 1) {
+                        eleStatus.className = 'badge badge-success';
+                        eleStatus.textContent = 'HOẠT ĐỘNG';
+                      }
+                      else {
+                        eleStatus.className = 'badge badge-danger';
+                        eleStatus.textContent = 'KHÔNG HOẠT ĐỘNG';
+                      }
+
+                    }, 500);
+
+                  }
+                  else {
+                    console.log('error:', data)
+                  }
+                })
+                .catch((error) => {
+                  console.error('Error:', error);
+                })
+                .finally(() => {
+                })
+                ;
+              // notify
+
+              // end loading
+
+            }
+
+            
+
+              
+           
+              <% if (errorValidate) { %>
+              const err = '<%= errorValidate %>';
+              toastr["error"]("<%= errorValidate %>")
+
+                <%}%>
+                  <% if (successAlert) { %>
+              toastr["success"]("<%= successAlert %>")
+              <%}%>
+          </script>

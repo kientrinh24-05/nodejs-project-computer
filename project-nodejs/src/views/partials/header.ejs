@@ -1,0 +1,79 @@
+
+<div class="header bg-primary pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">
+            <%= title %>
+          </h6>
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item"><a href="/admin/dashboard"><i class="fas fa-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="<%= breadcrumbs[0].link %>">
+                  <%= breadcrumbs[0].title %>
+                </a></li>
+              <% if (breadcrumbs[1] !=null) { %>
+                <li class="breadcrumb-item active" aria-current="<%= breadcrumbs[1].link %>">
+                  <%= breadcrumbs[1].title %>
+                </li>
+                <% } %>
+            </ol>
+          </nav>
+        </div>
+        <div class="col-lg-6 col-5 text-right d-flex align-items-center justify-content-end">
+          <% if (typeof hideActionSearch=="undefined" ) { %>
+          <form id="form-search" class="navbar-search navbar-search-light form-inline mr-2" id="navbar-search-main"
+            method="GET" action="<%= actionSearch %> ">
+            <div class="form-group mb-0" style="    height: 27px;width: 200px;">
+              <div class="input-group input-group-alternative input-group-merge" style="height: 27px">
+                <div class="input-group-prepend">
+                  <span onclick="submitFormSearch()" class="input-group-text" style="height: 32px; cursor: pointer;"><i
+                      class="fas fa-search"></i></span>
+                </div>
+                <% if (q !='' ) { %>
+                  <input name="q" value="<%= q.replace(/%/g,'') %> " class="form-control" placeholder="Tìm kiếm"
+                    type="text" style="height: 27px;width: 200px">
+                  <% } else { %>
+
+                    <input name="q" class=" form-control" placeholder="Tìm kiếm" type="text"
+                      style="height: 27px;width: 200px">
+                    <% } %>
+
+              </div>
+            </div>
+            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main"
+              aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </form>
+          <% } %>
+          <% if (typeof hideActionFillter=="undefined" ) { %>
+          <button type="button" class="btn btn-secondary btn-sm mr-2" data-toggle="modal" data-target="#filterModal">
+            <i class="fas fa-filter"></i>
+          </button>
+          <% } %>
+          <button type="button" class="btn btn-info btn-sm" onclick="reload()" class="mr-1">
+            <i class="fas fa-redo-alt"></i>
+          </button>
+          <% if (typeof hideActionExportExcel=="undefined" ) { %>
+          <button type="button" class="btn btn-success btn-sm" onclick="exportExcel()" class="mr-1">
+            <i class="far fa-file-excel"></i>
+          </button>
+          <% } %>
+          <% if (typeof hideActionImportExcel=="undefined" ) { %>
+            <button type="button" class="btn btn-warning btn-sm" class="mr-1" data-toggle="modal"
+              data-target="#modal-notification">
+              <i class="fas fa-file-upload"></i>
+            </button>
+            <% } %>
+              <% if ( typeof hideActionAdd=="undefined" ) { %>
+                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#exampleModal">
+                  Thêm mới
+                </button>
+                <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

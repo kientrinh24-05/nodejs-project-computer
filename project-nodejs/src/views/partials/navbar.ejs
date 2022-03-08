@@ -1,0 +1,113 @@
+
+<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <div class="scrollbar-inner">
+    <div class="sidenav-header  align-items-center position-relative">
+      <a class="navbar-brand" href="/admin/dashboard" style="position: absolute;
+        top: 50%; 
+        right: 50%;
+        transform: translate(50%,-50%);
+        text-transform: uppercase;
+        font-family: verdana;
+        font-size: 24px;
+        font-weight: 700;
+        color: #5e72e4;
+        text-shadow: 1px 1px 1px #919191,
+            1px 2px 1px #919191
+            ">
+        SHOP X
+      </a>
+    </div>
+    <div class="navbar-inner">
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/dashboard">
+              <i class="ni ni-tv-2 text-primary"></i>
+              <span class="nav-link-text">Tổng quan</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <div id="accordion">
+              <div data-toggle="collapse" data-target="#collapseProduct" aria-expanded="true" aria-controls="collapseProduct">
+                <a class="nav-link d-flex justify-content-between" href="#">
+                  <div>
+                    <i class="fas fa-hotel" style="font-size: 19px; margin-right: 9px;"></i>
+                    <span class="nav-link-text">Sản phẩm</span>
+                  </div>
+                  <div><i class="ni ni-bold-right"></i></div>
+                </a>
+              </div>
+              <div id="collapseProduct" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <a class="nav-link" style="padding-left: 27px;" href="/admin/room">
+                  <i class="fab fa-buromobelexperte"></i>
+                  <span class="nav-link-text">Sản phẩm</span>
+                </a>
+                <a class="nav-link" style="padding-left: 27px;" href="/admin/room/category">
+                  <i class="ni ni-app"></i>
+                  <span class="nav-link-text">Loại sản phẩm</span>
+                </a>
+                <hr />
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/customer">
+              <i class="far fa-id-badge" style="font-size: 16px;"></i>
+              <span class="nav-link-text">Khách hàng</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/order">
+              <i class="fas fa-money-check-alt"></i>
+              <span class="nav-link-text">Hóa đơn</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <div id="accordion">
+              <div data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link d-flex justify-content-between" href="#">
+                  <div>
+                    <i class="far fa-chart-bar" style="font-size: 19px; margin-right: 9px;"></i>
+                    <span class="nav-link-text">Báo cáo</span>
+                  </div>
+                  <div><i class="ni ni-bold-right"></i></div>
+                </a>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <a class="nav-link" style="padding-left: 27px;" href="/admin/report/revenue">
+                  <i class="fas fa-hand-holding-usd"></i>
+                  <span class="nav-link-text">Doanh thu</span>
+                </a>
+                <a class="nav-link" style="padding-left: 27px;" href="/admin/report/customer">
+                  <i class="far fa-address-card"></i>
+                  <span class="nav-link-text">Khách hàng</span>
+                </a>
+                <hr />
+              </div>
+            </div>
+          </li>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="/admin/post">
+              <i class="fas fa-newspaper"></i>
+              <span class="nav-link-text">Tin tức</span>
+            </a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/contact">
+              <i class="far fa-address-card"></i>
+              <span class="nav-link-text">Liên hệ</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/profile">
+              <i class="fas fa-cogs"></i>
+              <span class="nav-link-text">Hồ sơ</span>
+            </a>
+          </li>
+        </ul>
+        <hr class="my-3">
+      </div>
+    </div>
+  </div>
+</nav>
