@@ -1,161 +1,80 @@
-<div class="ps-page--default ps-page--contact">
-    <div class="ps-page__header bg--top" data-background="/page/img/bg/contact-bg.jpg">
-      <div class="container">
-        <h3>Contact</h3>
-        <ul class="ps-breadcrumb">
-          <li><a href="#">Home</a></li>
-          <li>Contact</li>
-        </ul>
-      </div>
+
+  <section class="link-url">
+    <div class="container">
+        <div class="link-url-content">
+            <div class="menu-not-home">
+    
+            </div>
+            <div class="breadcrumb">
+                <ol  itemscope itemtype="http://schema.org/BreadcrumbList">
+                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <a itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+                          <span itemprop="name">Trang chủ</span>
+                        </a> <span class="bre-chia"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <a itemtype="http://schema.org/Thing" href="lien-he.html" itemprop="item">
+                            <span itemprop="name">Liên hệ</span>
+                        </a>
+                        <meta itemprop="position" content="2" />
+                    </li>
+                </ol>
+            </div>
+        </div>
     </div>
-    <div class="ps-page__content">
-      <div class="container">
-        <div class="ps-contact">
-          <div class="ps-section__left">
-            <form class="ps-form--contact" action="/lien-he" method="post">
-              <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 ">
-                  <div class="form-group">
-                    <label>Họ tên <sup>*<sup/></label>
-                    <input required class="form-control" type="text" placeholder="" name="fullname">
-                  </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 ">
-                  <div class="form-group">
-                    <label>Email<sup>*<sup/></label>
-                    <inputrequired  class="form-control" type="email" placeholder="" name="email">
-                  </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 ">
-                  <div class="form-group">
-                    <label>Điện thoại<sup>*<sup/></label>
-                    <inputrequired  class="form-control" type="text" placeholder="" name="phone">
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 ">
-                <div class="form-group">
-                  <label>Chủ đề<sup>*<sup/></label>
-                  <input required class="form-control" type="email" placeholder="" name="subject">
-                </div>
-              </div>
+</section>
+  <section class="page-all-ct">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 order-lg-1">
+                <form method="post" enctype="multipart/form-data">
               <div class="form-group">
-                <label>Nội dung<sup>*<sup/></label>
-                <textarea required class="form-control" rows="6" placeholder="" name="content"></textarea>
+                  <label class="col-form-label">Họ tên*</label>
+                  <div class="input-holder">
+                      <input type="text" class="form-control"  name="contact_name" id="contact_name_detail">
+                  </div>
               </div>
-              <div class="form-group submit">
-                <button class="ps-btn ps-btn--black">Gửi</button>
+
+              <div class="form-group">
+                  <label class="col-form-label">Email*</label>
+                  <div class="input-holder">
+                      <input type="text" class="form-control" name="contact_email" id="contact_email_detail">
+                  </div>
               </div>
-            </form>
-          </div>
-          <div class="ps-section__right">
-            <ul class="ps-list--social">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-            </ul>
-            <figure>
-              <figcaption>Our Office</figcaption>
-              <p>15 St Margarets Lane New York, NY 10033</p>
-            </figure>
-            <figure>
-              <figcaption>Get in Touch</figcaption>
-              <aside>
-                <p><strong class="text-uppercase">Phone Number</strong></p>
-                <p>631-679-6357</p>
-              </aside>
-              <aside>
-                <p><strong class="text-uppercase">Email</strong></p>
-                <p><a href="#"><span class="__cf_email__" data-cfemail="22515752504d62475a434f524e470c414d4f">[email&#160;protected]</span></a></p>
-              </aside>
-            </figure>
-          </div>
+
+              <div class="form-group">
+                  <label class="col-form-label">Điện thoại*</label>
+                  <div class="input-holder">
+                      <input type="text" class="form-control" name="contact_tel" id="contact_tel_detail">
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-form-label">Thông tin liên hệ*</label>
+                  <div class="input-holder">
+                      <input type="text" class="form-control" name="contact_message" id="contact_message_detail">
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-form-label"></label>
+                  <div class="input-holder">
+                      <button type="button" class="btn btn-primary text-16" onclick="return check_form_contact_detail();">Gửi liên hệ</button>
+                  </div>
+              </div>
+              <input type="hidden" value="send" name="action" />
+          </form>            
+            </div>
+        
+            <div class="col-lg-6">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.1433733433432!2d105.84465011437757!3d20.986889194583462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac6a288b27f1%3A0x3bbeb62ba298aeee!2zMzc3LCAzNzkgVHLGsMahbmcgxJDhu4tuaCwgVMOibiBNYWksIEhvw6BuZyBNYWksIEjDoCBO4buZaSAxMDAwMCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1635493040226!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            
         </div>
-        <div class="ps-contact-location">
-          <article>
-            <div class="row">
-              <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                <h4>Store in London</h4>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
-                <figure>
-                  <figcaption>LOCATION</figcaption>
-                  <p>16 Iolaire Road, New Abbey, DG2 2SX</p>
-                </figure>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                <figure>
-                  <figcaption>PHONE NUMBER</figcaption>
-                  <p>077 6941 6241</p>
-                </figure>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                <figure>
-                  <figcaption>Email</figcaption>
-                  <p><a href="#"><span class="__cf_email__" data-cfemail="55262025273a393a3b313a3b15302d34382539307b363a38">[email&#160;protected]</span></a></p>
-                </figure>
-              </div>
-            </div>
-          </article>
-          <article>
-            <div class="row">
-              <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                <h4>Store in Sydney</h4>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
-                <figure>
-                  <figcaption>LOCATION</figcaption>
-                  <p>16 Iolaire Road, New Abbey, DG2 2SX</p>
-                </figure>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                <figure>
-                  <figcaption>PHONE NUMBER</figcaption>
-                  <p>077 6941 6241</p>
-                </figure>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                <figure>
-                  <figcaption>Email</figcaption>
-                  <p><a href="#"><span class="__cf_email__" data-cfemail="a4d7d1d4d6cbd7ddc0d7cac1dde4c1dcc5c9d4c8c18ac7cbc9">[email&#160;protected]</span></a></p>
-                </figure>
-              </div>
-            </div>
-          </article>
-          <article>
-            <div class="row">
-              <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                <h4>Store in Hamburg</h4>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
-                <figure>
-                  <figcaption>LOCATION</figcaption>
-                  <p>16 Iolaire Road, New Abbey, DG2 2SX</p>
-                </figure>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                <figure>
-                  <figcaption>PHONE NUMBER</figcaption>
-                  <p>077 6941 6241</p>
-                </figure>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 ">
-                <figure>
-                  <figcaption>Email</figcaption>
-                  <p><a href="#"><span class="__cf_email__" data-cfemail="395158545b4c4b5e795c41585449555c175a5654">[email&#160;protected]</span></a></p>
-                </figure>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
     </div>
-    <div class="ps-contact-map">
-      <div class="embed-responsive embed-responsive-16by9"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1287.3803941010055!2d13.439240341651502!3d52.47459359285398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84fa1e929dd5b%3A0xbd52bc54a4e1469a!2sNadaf%20Lebensmittel!5e0!3m2!1sen!2s!4v1571471987742!5m2!1sen!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe></div>
-    </div>
-  </div>
+</section>
+ 
   <script>
         
 

@@ -1,4 +1,4 @@
-<div class="ps-page ps-page--product-detail">
+
   <section class="link-url">
     <div class="container">
       <div class="link-url-content">
@@ -85,71 +85,38 @@
             class="fancybox" data-fancybox="gallery"></a></div>
         <div class="detail-img">
           <div class="big-image-n" id="sync1">
-            <a class="MagicZoom" id="Zoomer" href="/media/product/21615-hp4.jpg" title="" hd="" amd="" radeon=""
-              win10="" silver="" 1="" yr)"=""
-              style="position: relative; display: inline-block; text-decoration: none; outline: 0px; overflow: hidden; width: auto; height: auto;"><img
-                src="https://nguyencongpc.vn/media/product/21615-hp4.jpg" title="{$product_info.productName}"
-                alt="Laptop HP 14s-fq1080AU 4K0Z7PA (AMD Ryzen 3-5300U/ 4GB RAM/ 256GB SSD/ 14" hd="" amd="" radeon=""
-                win10="" silver="" 1="" yr)"="" style="opacity: 1;">
-              <div class="MagicZoomPup"
-                style="z-index: 10; position: absolute; overflow: hidden; display: none; visibility: hidden; width: 118px; height: 106px; opacity: 0.5; left: 265px; top: 0px;">
-              </div>
-              <div class="MagicZoomHint"
-                style="display: block; overflow: hidden; position: absolute; visibility: visible; z-index: 1; inset: 2px auto auto 2px; opacity: 0.75; max-width: 381px;">
-              </div>
-            </a>
+            <% const images=product.images.split(",")%>
+            <% images.forEach(item=> { %>
+              <div class="item"><a href="<%= item %>"><img src="<%= item %>" alt=""></a></div>
+              <% }) %>
+        
           </div>
+
           <div class="img-thumb-n owl-carousel owl-loaded owl-drag" id="sync2">
             <div class="owl-stage-outer">
-              <div class="owl-stage"
+              <div class="owl-list-img"
                 style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 316px;">
                 <div class="owl-item active" style="width: 69px; margin-right: 10px;">
-                  <div class="item-n active">
-                    <a class="d-block" href="/media/product/21615-hp4.jpg" rev="/media/product/21615-hp4.jpg"
-                      rel="zoom-id:Zoomer;" style="outline: 0px; display: inline-block;">
-                      <img src="/media/product/250-21615-hp4.jpg"
-                        alt="Laptop HP 14s-fq1080AU 4K0Z7PA (AMD Ryzen 3-5300U/ 4GB RAM/ 256GB SSD/ 14" hd="" amd=""
-                        radeon="" win10="" silver="" 1="" yr)"="">
-                    </a>
-                  </div>
-                </div>
-                <div class="owl-item active" style="width: 69px; margin-right: 10px;">
-                  <div class="item-n">
-                    <a class="d-block" href="/media/product/21615-60978_laptop_hp_14s_fq1080au_4k0z7pa_bac_3.jpg"
-                      rev="/media/product/21615-60978_laptop_hp_14s_fq1080au_4k0z7pa_bac_3.jpg" rel="zoom-id:Zoomer;"
-                      style="outline: 0px; display: inline-block;"><img
-                        src="/media/product/250-21615-60978_laptop_hp_14s_fq1080au_4k0z7pa_bac_3.jpg"
-                        alt="Laptop HP 14s-fq1080AU 4K0Z7PA (AMD Ryzen 3-5300U/ 4GB RAM/ 256GB SSD/ 14" hd="" amd=""
-                        radeon="" win10="" silver="" 1="" yr)"=""> </a>
-                  </div>
-                </div>
-                <div class="owl-item active" style="width: 69px; margin-right: 10px;">
-                  <div class="item-n">
-                    <a class="d-block" href="/media/product/21615-60978_laptop_hp_14s_fq1080au_4k0z7pa_bac_2.jpg"
-                      rev="/media/product/21615-60978_laptop_hp_14s_fq1080au_4k0z7pa_bac_2.jpg" rel="zoom-id:Zoomer;"
-                      style="outline: 0px; display: inline-block;"><img
-                        src="/media/product/250-21615-60978_laptop_hp_14s_fq1080au_4k0z7pa_bac_2.jpg"
-                        alt="Laptop HP 14s-fq1080AU 4K0Z7PA (AMD Ryzen 3-5300U/ 4GB RAM/ 256GB SSD/ 14" hd="" amd=""
-                        radeon="" win10="" silver="" 1="" yr)"=""> </a>
-                  </div>
-                </div>
-                <div class="owl-item active" style="width: 69px; margin-right: 10px;">
-                  <div class="item-n">
-                    <a class="d-block" href="/media/product/21615-60978_laptop_hp_14s_fq1080au_4k0z7pa_bac_1.jpg"
-                      rev="/media/product/21615-60978_laptop_hp_14s_fq1080au_4k0z7pa_bac_1.jpg" rel="zoom-id:Zoomer;"
-                      style="outline: 0px; display: inline-block;"><img
-                        src="/media/product/250-21615-60978_laptop_hp_14s_fq1080au_4k0z7pa_bac_1.jpg"
-                        alt="Laptop HP 14s-fq1080AU 4K0Z7PA (AMD Ryzen 3-5300U/ 4GB RAM/ 256GB SSD/ 14" hd="" amd=""
-                        radeon="" win10="" silver="" 1="" yr)"=""> </a>
-                  </div>
+                  <% images.forEach(item=> { %>
+                    <div class="item-n active">
+      
+                        <img src="<%= item %>"
+                          alt="Laptop HP 14s-fq1080AU 4K0Z7PA (AMD Ryzen 3-5300U/ 4GB RAM/ 256GB SSD/ 14" hd="" amd=""
+                          radeon="" win10="" silver="" 1="" yr)>
+  
+                    </div>
+                    <% }) %>
+                 
                 </div>
               </div>
             </div>
-            <div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span
+            <!-- <div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span
                   aria-label="Previous">‹</span></button><button type="button" role="presentation"
                 class="owl-next"><span aria-label="Next">›</span></button></div>
-            <div class="owl-dots disabled"></div>
+            <div class="owl-dots disabled"></div> -->
           </div>
+
+          
         </div>
         <div class="content-top-detail">
 
@@ -251,11 +218,6 @@
           </div>
         </div>
         <div class="content-top-right-detail">
-          <!--<div class="box-showrom-has-pro" id="js-box-showrom-has-pro">
-                  <div class="title">SẢN PHẨM CÒN HÀNG TẠI</div>
-                  <div class="list" id="js-box-showrom-has-pro-list">
-                  </div>
-              </div>-->
           <div class="box-showrom-has-pro policy-detail">
             <div class="title">YÊN TÂM MUA HÀNG</div>
             <div class="list">
@@ -1039,121 +1001,9 @@
     </div>
   </section>
   <div id="fb-root"></div>
-  <!-- <div class="container">
-    <div class="ps-page__header">
-      <ul class="ps-breadcrumb">
-        <li><a href="index.html">Home</a></li>
-        <li>
-          <%= product.title %>
-        </li>
-      </ul>
-      <div class="ps-page__nav">
-        <button><i class="icon-chevron-left"></i></button>
-        <button><i class="icon-chevron-right"></i></button>
-      </div>
-    </div>
-    <div class="ps-product--detail ps-product--video">
-      <div class="ps-product__header">
-        <div class="ps-product__thumbnail" data-vertical="false">
-          <% const images=product.images.split(",")%>
-            <figure>
-              <div class="ps-wrapper">
-                <div class="ps-product__gallery" data-arrow="true">
-                  <% images.forEach(item=> { %>
-                    <div class="item"><a href="<%= item %>"><img src="<%= item %>" alt=""></a></div>
-                    <% }) %>
-                </div>
-              </div>
-            </figure>
-            <div class="ps-product__variants" data-item="4" data-md="3" data-sm="3" data-arrow="false">
-              <% images.forEach(item=> { %>
-                <div class="item"><img src="<%= item %>" alt=""></div>
-                <% }) %>
-            </div>
-        </div>
-        <div class="ps-product__info">
-          <div class="ps-product__info-header">
-            <div class="ps-product__rating">
-              <select class="ps-rating" data-read-only="true">
-                <% for( let index=0; index < product.rate; index++ ) { %>
-                  <option value="1">
-                    <%= index %>
-                  </option>
-                  <% } %>
-              </select><span></span>
-            </div>
-            <h2 class="ps-product__title">
-              <%= product.title %>
-            </h2><span class="ps-product__sku">SKU: AB1609456789</span>
-            <h4 class="ps-product__price out-stock">
-              <%= product.price.toLocaleString('it-IT', { style: 'currency' , currency: 'VND' }) %>
-            </h4>
-          </div>
-          <div class="ps-product__desc">
-            <p>
-              <%- product.description %>
-            </p>
-          </div>
-          <div class="ps-product__shopping">
-            <figure>
-              <div class="form-group--number">
-                <button class="up"></button>
-                <button class="down"></button>
-                <input value="1" id="product-qty" class="form-control" type="text" placeholder="1">
-              </div><a class="ps-btn ps-btn--black add-cart" data-product="<%= JSON.stringify(product) %>" href="#">Thêm
-                vào giỏ</a>
-            </figure>
-            <div class="ps-product__buynow"><a class="ps-btn ps-btn--black ps-btn--fullwidth add-cart" data-redirect="1"
-                data-product="<%= JSON.stringify(product) %>" href="#">Mua ngay</a></div>
-          </div>
-          <div class="ps-product__specification">
-            <p><strong>Danh mục:</strong><a href="#">
-                <%= product.name %>
-              </a></p>
-          </div>
-          <div class="ps-product__sharing"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i
-                class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-pinterest"></i></a></div>
-        </div>
-      </div>
-      <div class="ps-product__content ps-tab-root">
-        <div class="container">
-          <ul class="ps-tab-list" style="margin-bottom:0;">
-            <li class="active"><a href="#tab-1">Mô tả</a></li>
-          </ul>
-          <div class="ps-tabs" style="padding: 20px 0;">
-            <div class="ps-tab active" id="tab-1">
-              <div class="row">
-                <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12 col-12 ">
-                  <div class="ps-document">
-                    <%- product.content ? product.content : 'Không có mô tả' %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <ul class="ps-tab-list" style="margin-bottom:0;">
-            <li class="active"><a href="#">Bình luận</a></li>
-          </ul>
-          <div class="ps-tabs" style="padding: 20px 0;">
-            <div class="ps-tab active" id="tab-1">
-              <div class="row">
-                <div class="col-md-12 col-sm-12 col-12 ">
-                  <div class="ps-document">
-                    <div class="fb-comments" data-href="https://cau-nguyen-online.surge.sh/<%= product.id %>"
-                      data-width="100%" data-numposts="5"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+</div>
 
-      </div>
-    </div>
-  </div> -->
-</div>
-</div>
 <script async defer crossorigin="anonymous"
   src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0&appId=543121906576699&autoLogAppEvents=1"
   nonce="MhrNS2vM"></script>

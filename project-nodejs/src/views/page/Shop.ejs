@@ -1,4 +1,4 @@
-<div class="ps-page">
+
   <section class="link-url">
     <div class="container">
       <div class="link-url-content">
@@ -219,34 +219,37 @@
             <div class="product-list">
               <% products.forEach(element=> { %>
                 <div class="col-xl-3 col-lg-4 col-md-3 col-sm-6 col-6 ">
-                  <div class="ps-product">
-                    <div class="ps-product__thumbnail"><img style="width: 270px; height: 270px" class="ps-product__image"
-                        src="<%= element.thumbnail %>" alt="" /><img class="ps-product__image-alt"
-                        href="/san-pham/<%= element.id %>"></a>
-                      <div class="ps-product__actions">
-                        <a class="add-cart" data-product="<%= JSON.stringify(element) %>"> THÊM VÀO GIỎ</a>
-                        <a class="add-wishList" data-original-title="View Wishlist" data-rel="tooltip"
-                          data-product="<%= JSON.stringify(element) %>">
-                          <span class="indent-text">Browse Wishlist</span>
-                        </a>
+                  <a href="/san-pham/<%= element.id %>">
+                    <div class="ps-product">
+                      <div class="ps-product__thumbnail"><img style="width: 270px; height: 270px" class="ps-product__image"
+                          src="<%= element.thumbnail %>" alt="" /><img class="ps-product__image-alt"
+                          href="/san-pham/<%= element.id %>"></a>
+                        <div class="ps-product__actions">
+                          <a class="add-cart" data-product="<%= JSON.stringify(element) %>"> THÊM VÀO GIỎ</a>
+                          <a class="add-wishList" data-original-title="View Wishlist" data-rel="tooltip"
+                            data-product="<%= JSON.stringify(element) %>">
+                            <span class="indent-text">Browse Wishlist</span>
+                          </a>
+                        </div>
                       </div>
+                      <div class="ps-product__content"><a class="ps-product__title" href="/san-pham/<%= element.id %>">
+                          <%= element.title %>
+                        </a>
+                        <select class="ps-rating" data-read-only="true">
+                          <% for( let index=0; index < element.rate; index++ ) { %>
+                            <option value="1">
+                              <%= index %>
+                            </option>
+                            <% } %>
+      
+                        </select>
+                      </div>
+                      <p class="ps-product__price">
+                        <%= element.price.toLocaleString('it-IT', { style: 'currency' , currency: 'VND' }) %>
+                      </p>
                     </div>
-                    <div class="ps-product__content"><a class="ps-product__title" href="/san-pham/<%= element.id %>">
-                        <%= element.title %>
-                      </a>
-                      <select class="ps-rating" data-read-only="true">
-                        <% for( let index=0; index < element.rate; index++ ) { %>
-                          <option value="1">
-                            <%= index %>
-                          </option>
-                          <% } %>
-    
-                      </select>
-                    </div>
-                    <p class="ps-product__price">
-                      <%= element.price.toLocaleString('it-IT', { style: 'currency' , currency: 'VND' }) %>
-                    </p>
-                  </div>
+                  </a>
+                 
                 </div>
                 <% }) %>
             </div>
@@ -260,5 +263,3 @@
     </div>
   </section>
 
-
-</div>

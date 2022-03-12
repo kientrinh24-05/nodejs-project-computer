@@ -7,6 +7,7 @@ const AccountController = require('../../controllers/page/AccountController');
 router.get('/dang-nhap', AccountController.login);
 router.post('/dang-nhap', AccountController.postLogin);
 router.post('/dang-ky', AccountController.postRegister);
+router.get('/dang-ky', AccountController.register);
 router.get('/dang-xuat', AccountController.getLogout);
 router.get('/ho-so', AccountController.profile);
 

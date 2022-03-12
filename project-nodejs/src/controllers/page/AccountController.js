@@ -20,6 +20,24 @@ controller.login = (req, res) => {
     );
 };
 
+controller.register = (req, res) => {
+    const errorValidate = req.session.Error;
+    const successAlert = req.session.Success;
+    delete req.session.Error;
+    delete req.session.Success;
+
+    if (req.session.Customer) res.redirect('/');
+    res.render('page/register',
+        {
+            layout: './layout/_layoutPageMember',
+            extractScripts: true,
+            extractStyles: true,
+            errorValidate: errorValidate,
+            successAlert: successAlert,
+        }
+    );
+};
+
 controller.postLogin = (req, res) => {
     const urlBack = req.body.urlBack ?? '';
     const username = req.body.username;

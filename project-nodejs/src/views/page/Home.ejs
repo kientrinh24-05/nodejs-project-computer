@@ -1,24 +1,241 @@
-<% products.forEach(element=> { %>
-  <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 ">
-    <div class="ps-product">
-      <div class="ps-product__thumbnail"><img class="ps-product__image" style="width: 270px; height: 270px" src="<%= element.thumbnail %>" alt="" /><img
-          class="ps-product__image-alt" href="/san-pham/<%= element.id %>"></a>
-        <div class="ps-product__actions">
-          <a class="add-cart" data-product="<%= JSON.stringify(element) %>"> THÊM VÀO GIỎ</a>
-        </div>
+<section class="link-url">
+  <div class="container">
+      <div class="link-url-content">
+          <div class="menu-not-home">
+              <div class="menu-cat">
+                  <div class="title-mn"><span class="icons-2021"></span> Danh mục sản phẩm <i class="fa fa-caret-down" aria-hidden="true"></i></div>
+                  <div class="box-menu-home">
+                      <ul>
+                          
+                          <li>
+                              <a href="/laptop" class="itop" style="background: url(/media/category/cat_icon_407_1635498774.png) no-repeat;">LAPTOP - PHỤ KIỆN</a>
+                              
+                              <div class="sub-menu">
+                                  
+                                  <div class="box-menu">
+                                      <a href="/laptop-gaming" class="lv2">LAPTOP GAMING</a>
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/laptop-theo-nhu-cau" class="lv2">LAPTOP THEO NHU CẦU</a>
+                                      
+                                      
+                                      <a href="/laptop-gaming-1" class="lv3">Laptop Gaming</a>
+                                      
+                                      <a href="/laptop-do-hoa-kien-truc" class="lv3">Laptop Đồ Họa - Kiến Trúc</a>
+                                      
+                                      <a href="/laptop-van-phong" class="lv3">Laptop Văn Phòng</a>
+                                      
+                                      <a href="/laptop-mong-nhe" class="lv3">Laptop Mỏng Nhẹ</a>
+                                      
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/laptop-theo-khoang-gia" class="lv2">LAPTOP THEO KHOẢNG GIÁ</a>
+                                      
+                                      
+                                      <a href="/duoi-10-trieu" class="lv3">Dưới 10 Triệu</a>
+                                      
+                                      <a href="/10-trieu-15-trieu" class="lv3">10 Triệu - 15 Triệu</a>
+                                      
+                                      <a href="/15-trieu-20-trieu" class="lv3">15 Triệu - 20 Triệu</a>
+                                      
+                                      <a href="/20-trieu-30-trieu" class="lv3">20 Triệu - 30 Triệu</a>
+                                      
+                                      <a href="/30-trieu-50-trieu" class="lv3">30 Triệu - 50 Triệu</a>
+                                      
+                                      <a href="/50-trieu-100-trieu" class="lv3">50 Triệu - 100 Triệu</a>
+                                      
+                                      <a href="/tren-100-trieu" class="lv3">Trên 100 Triệu</a>
+                                      
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/laptop-theo-cpu" class="lv2">LAPTOP THEO CPU</a>
+                                      
+                                      
+                                      <a href="/intel-celeronpentium" class="lv3">Intel Celeron/Pentium</a>
+                                      
+                                      <a href="/intel-core-i3" class="lv3">Intel Core i3</a>
+                                      
+                                      <a href="/intel-core-i5" class="lv3">Intel Core i5</a>
+                                      
+                                      <a href="/intel-core-i7" class="lv3">Intel Core i7</a>
+                                      
+                                      <a href="/intel-core-i9" class="lv3">Intel Core i9</a>
+                                      
+                                      <a href="/amd-ryzen-3" class="lv3">AMD Ryzen 3</a>
+                                      
+                                      <a href="/amd-ryzen-5" class="lv3">AMD Ryzen 5</a>
+                                      
+                                      <a href="/amd-ryzen-7" class="lv3">AMD Ryzen 7</a>
+                                      
+                                      <a href="/amd-ryzen-9" class="lv3">AMD Ryzen 9</a>
+                                      
+                                      <a href="/apple-m1" class="lv3">Apple M1</a>
+                                      
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/laptop-theo-hang" class="lv2">LAPTOP THEO HÃNG</a>
+                                      
+                                      
+                                      <a href="/dell" class="lv3">Laptop Dell</a>
+                                      
+                                      <a href="/laptop-hp" class="lv3">Laptop HP</a>
+                                      
+                                      <a href="/lenovo" class="lv3">Laptop Lenovo</a>
+                                      
+                                      <a href="/laptop-lg" class="lv3">Laptop LG</a>
+                                      
+                                      <a href="/laptop-asus" class="lv3">Laptop Asus</a>
+                                      
+                                      <a href="/laptop-gigabyte" class="lv3">Laptop Gigabyte</a>
+                                      
+                                      <a href="/laptop-msi" class="lv3">Laptop MSI</a>
+                                      
+                                      <a href="/laptop-acer" class="lv3">Laptop Acer</a>
+                                      
+                                      <a href="/laptop-apple" class="lv3">Laptop Apple</a>
+                                      
+                                      <a href="/laptop-microsoft" class="lv3">Laptop Microsoft</a>
+                                      
+                                      <a href="/laptop-xpg" class="lv3">Laptop XPG</a>
+                                      
+                                      <a href="/laptop-colorful" class="lv3">Laptop Colorful</a>
+                                      
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/linh-kien-laptop" class="lv2">LINH KIỆN LAPTOP</a>
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/phu-kien-laptop" class="lv2">PHỤ KIỆN LAPTOP</a>
+                                      
+                                  </div>
+                                  
+                              </div>
+                              
+                          </li>
+                          
+                          <li>
+                              <a href="/pc-workstation" class="itop" style="background: url(/media/category/cat_icon_408_1635498610.png) no-repeat;">PC ĐỒ HOẠ - LÀM VIỆC</a>
+                              
+                              <div class="sub-menu">
+                                  
+                                  <div class="box-menu">
+                                      <a href="/pc-do-hoa-3ds-max" class="lv2">Pc đồ họa 3ds Max</a>
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/pc-do-hoa-autocad" class="lv2">Pc đồ họa AutoCAD</a>
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/edit-render-video-4k-8k" class="lv2">Pc dựng phim - Editor</a>
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/intel-xeon-workstation" class="lv2">Bộ Máy Sử Dụng CPU Intel Xeon</a>
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/amd-ryzen-workstation" class="lv2">Bộ Máy Sử Dụng CPU AMD</a>
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/workstation-nc" class="lv2">Bộ Máy Sử Dụng CPU Intel Core I</a>
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/bo-pc-chay-ai-tri-tue-nhan-tao" class="lv2">Pc AI - Trí tuệ nhân tạo</a>
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/server-may-ao-hoa" class="lv2">Server - Máy ảo hóa</a>
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/bo-may-tinh-van-phong" class="lv2">Bộ Máy Tính Văn Phòng</a>
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/apple-imac" class="lv2">Apple iMac</a>
+                                      
+                                  </div>
+                                  
+                                  <div class="box-menu">
+                                      <a href="/may-tinh-dong-bo" class="lv2">Máy Tính Đồng Bộ</a>
+                                      
+                                  </div>
+                                  
+                              </div>
+                              
+                          </li>
+                          
+                      
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          <div class="breadcrumb">
+              <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                  <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                      <a itemtype="http://schema.org/Thing" itemprop="item" href="/">
+                        <span itemprop="name">Trang chủ</span>
+                      </a> <span class="bre-chia"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                      <meta itemprop="position" content="1">
+                  </li>
+                  <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                      <a itemtype="http://schema.org/Thing" href="/gio-hang" itemprop="item">
+                          <span itemprop="name">Giỏ hàng </span>
+                      </a>
+                      <meta itemprop="position" content="2">
+                  </li>
+              </ol>
+          </div>
       </div>
-      <div class="ps-product__content"><a class="ps-product__title" href="/san-pham/<%= element.id %>"><%= element.title %></a>
-        <select class="ps-rating" data-read-only="true">
-          <% for( let index=0; index < element.rate; index++ ) { %>
-            <option value="1">
-              <%= index %>
-            </option>
-            <% } %>
-        </select>
-      </div>
-      <p class="ps-product__price">
-        <%= element.price.toLocaleString('it-IT', { style: 'currency' , currency: 'VND' }) %>
-      </p>
-    </div>
   </div>
-  <% }) %>
+</section>
+<section>
+  <% products.forEach(element=> { %>
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-6 ">
+      <div class="ps-product">
+        <div class="ps-product__thumbnail"><img class="ps-product__image" style="width: 270px; height: 270px" src="<%= element.thumbnail %>" alt="" /><img
+            class="ps-product__image-alt" href="/san-pham/<%= element.id %>"></a>
+          <div class="ps-product__actions">
+            <a class="add-cart" data-product="<%= JSON.stringify(element) %>"> THÊM VÀO GIỎ</a>
+          </div>
+        </div>
+        <div class="ps-product__content"><a class="ps-product__title" href="/san-pham/<%= element.id %>"><%= element.title %></a>
+          <select class="ps-rating" data-read-only="true">
+            <% for( let index=0; index < element.rate; index++ ) { %>
+              <option value="1">
+                <%= index %>
+              </option>
+              <% } %>
+          </select>
+        </div>
+        <p class="ps-product__price">
+          <%= element.price.toLocaleString('it-IT', { style: 'currency' , currency: 'VND' }) %>
+        </p>
+      </div>
+    </div>
+    <% }) %>
+</section>
