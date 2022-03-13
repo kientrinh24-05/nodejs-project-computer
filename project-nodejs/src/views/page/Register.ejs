@@ -31,46 +31,20 @@
     <h1 style="font-size:18px; font-weight:500;">Tạo tài khoản khách hàng cá nhân</h1>
 
     <div class="regist_left" style="max-width: 70%; margin: auto;">
-        <form enctype="multipart/form-data" >
-            <table>
-                <tr>
-                    <td style="width:140px;"><label>Email đăng ký*</label></td>
-                    <td>
-                    <input type="text" class="form-control" size="50" name="info[email]" id="email"/>
-                    <span id="check_user"></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><label>Tên*</label></td>
-                    <td><input type="text" class="form-control" size="50" name="info[full_name]" id="full_name" /></td>
-                </tr>
-
-                <tr>
-                    <td><label>Mật khẩu*</label></td>
-                    <td>
-                    <input type="password" class="form-control" size="50" name="info[password]" id="password" />
-                    <span class="password-call" style="color: #ff0000;"></span>
-                    </td>
-                </tr>
-
-
-
-
-
-               
-                
-            
-                <tr>
-                    <td></td>
-                    <td style="text-align:center;">
-                        <div style="margin: 20px 0;">
-                            <input id='btn_reg' type="button" onclick="check_field_registor()" value="Đăng ký" style="background:#4267b2; text-transform:uppercase; font-size:15px; font-weight:bold; padding:10px 20px; color:#fff; border:none; margin:auto;"/>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </form>
+        <form action="/dang-ky" method="POST">
+            <div class="form-group">
+              <input class="form-control" type="text" name="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="password" name="password" placeholder="Password">
+            </div>
+            <div class="form-group submit">
+              <button class="ps-btn ps-btn--fullwidth ps-btn--black">Register</button>
+            </div>
+          </form>
     </div><!--regis-left-->
     
 </div>

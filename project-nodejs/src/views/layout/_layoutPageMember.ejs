@@ -1155,8 +1155,8 @@
           </div>
           <div class="main-search">
               <div class="search-container d-flex">
-                  <form method="get" action="/tim" name="search" class="search-form-group">
-                      <input type="text" placeholder="Nhập tên sản phẩm, từ khóa cần tìm ..." class="search-input" id="js-seach-input" name="q" autocomplete="off">
+                  <form  class="search-form-group">
+                      <input type="text" placeholder="Nhập tên sản phẩm, từ khóa cần tìm ..." class="search-input" id="js-seach-input" name="q" autocomplete="on">
                       <button type="submit" class="search-submit">
                           <i class="fa fa-search" aria-hidden="true"></i>
                       </button>
@@ -1368,7 +1368,17 @@
     <script src="/page/js/app.js"></script>
     <script>
       const toggleSwitch = document.querySelector('#switch-theme');
+      const btnSubmit = document.querySelector('.search-submit');
       const currentTheme = localStorage.getItem('theme');
+      const valueInput = document.querySelector("#js-seach-input").value
+    
+      function searchValue (e) {
+        e.preventDefault()
+        router.push('/cua-hang/'+valueInput)
+      }
+      btnSubmit.addEventListener('click', function (e) {
+        searchValue(e)
+      })
 
       if (currentTheme) {
         document.documentElement.setAttribute('data-theme', currentTheme);

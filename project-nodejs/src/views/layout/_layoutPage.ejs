@@ -71,8 +71,22 @@
         <div class="hr-ct-right">
           <i class="fa fa-user-circle" aria-hidden="true"></i>
 
-          <a href="dang-ky.html">Đăng ký</a>/
-          <a href="dang-nhap.html">Đăng nhập</a>
+          <a href="/dang-ky">Đăng ký</a>/
+          <a href="/dang-nhap">Đăng nhập</a>
+          <% if (!customer) { %>
+            <a class="header__user" href="/dang-nhap"><i class="icon-user"></i></a>
+            <% } %>
+              <% if (customer) { %>
+                <a class="header__user" href="/ho-so">
+                  <img style="width: 30px; border-radius: 50%; border: 1px solid lightblue;"
+                    src="<%= customer.avatar %>">
+                </a>
+                <% } %>
+                  <% if (customer) { %>
+                    <ul style="margin-left:10px">
+                      <li><a style="font-size: 12px;" href="/dang-xuat">Đăng xuất</a></li>
+                    </ul>
+                    <% } %>
 
         </div>
       </div>
@@ -83,7 +97,7 @@
     <div class="container">
       <div class="header-mid-content">
         <div class="logo">
-          <a href="#">Shoppor</a>
+          <a href="#" class="txt">Kane PC</a>
         </div>
   
         <div class="main-search">
